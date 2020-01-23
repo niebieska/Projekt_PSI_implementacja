@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class Uzytkownik {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @NonNull
     private int id;
 
@@ -20,10 +20,10 @@ public class Uzytkownik {
     private String tytulNaukowy;
     private String formaZatrudnienia;
     private String stanowisko;
-    private String pensum;
-    private String zgodaNaPrzekroczeniePensum;
-    private String pozytywnieZaopiniowany;
-    private String rolaUzytkownika; //DType 
+    private int pensum;
+    private Boolean zgodaNaPrzekroczeniePensum;
+    private Boolean pozytywnieZaopiniowany;
+    private String rolaUzytkownika; //DType
 
     public Uzytkownik() {
         super();
@@ -103,33 +103,34 @@ public class Uzytkownik {
         this.stanowisko = stanowisko;
     }
 
-    public String getPensum() {
+    public int getPensum() {
         return pensum;
     }
 
-    public void setPensum(String pensum) {
+    public void setPensum(int pensum) {
         this.pensum = pensum;
     }
 
-    public String getZgodaNaPrzekroczeniePensum() {
+    public Boolean getZgodaNaPrzekroczeniePensum() {
         return zgodaNaPrzekroczeniePensum;
     }
 
-    public void setZgodaNaPrzekroczeniePensum(String zgodaNaPrzekroczeniePensum) {
+    public void setZgodaNaPrzekroczeniePensum(Boolean zgodaNaPrzekroczeniePensum) {
         this.zgodaNaPrzekroczeniePensum = zgodaNaPrzekroczeniePensum;
     }
 
-    public String getPozytywnieZaopiniowany() {
+    public Boolean getPozytywnieZaopiniowany() {
         return pozytywnieZaopiniowany;
     }
 
-    public void setPozytywnieZaopiniowany(String pozytywnieZaopiniowany) {
+    public void setPozytywnieZaopiniowany(Boolean pozytywnieZaopiniowany) {
         this.pozytywnieZaopiniowany = pozytywnieZaopiniowany;
     }
 
     public String getRolaUzytkownika() {
         return rolaUzytkownika;
     }
+
 
     public void setRolaUzytkownika(String rolaUzytkownika) {
         this.rolaUzytkownika = rolaUzytkownika;
