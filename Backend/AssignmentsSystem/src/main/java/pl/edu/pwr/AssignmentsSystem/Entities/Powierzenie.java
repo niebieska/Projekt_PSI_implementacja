@@ -2,11 +2,9 @@ package pl.edu.pwr.AssignmentsSystem.Entities;
 
 import org.springframework.lang.NonNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 public class Powierzenie {
@@ -19,6 +17,14 @@ public class Powierzenie {
     private Timestamp dataUtworzenia;
     private int aktywny;
 
+    @ManyToOne
+    Uzytkownik uzytkownik;
+    @ManyToOne
+    private Kurs kurs;
+    @ManyToOne
+    private PlanPowierzen planPowierzen;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<WersjaPowierzenia> wersjePowierzen;
 
     public Powierzenie() {
     }

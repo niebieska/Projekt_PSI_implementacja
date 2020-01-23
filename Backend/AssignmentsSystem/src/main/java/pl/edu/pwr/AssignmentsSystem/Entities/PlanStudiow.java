@@ -2,22 +2,24 @@ package pl.edu.pwr.AssignmentsSystem.Entities;
 
 import com.sun.istack.NotNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class PlanStudiow {
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-@NotNull
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
     private int id;
     private String cyklKrztalcenia;
     private int liczbaStudentow;
     private String kierunekStudiow;
     private String specjalnosc;
     private int numerSemestru;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Modul> modulList;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<PlanPowierzen> planPowierzenList;
 
     public PlanStudiow() {
     }

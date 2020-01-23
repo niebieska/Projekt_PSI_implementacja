@@ -2,10 +2,8 @@ package pl.edu.pwr.AssignmentsSystem.Entities;
 
 import com.sun.istack.NotNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Kurs {
@@ -16,6 +14,10 @@ public class Kurs {
     private String formaZajec;
     private int liczbaGodzin;
     private String nazwa;
+    @OneToMany
+    private List<PreferencjaProwadzacego> preferencjeProwadzacego;
+    @ManyToOne
+    private Modul moduly;
 
     public Kurs() {
     }

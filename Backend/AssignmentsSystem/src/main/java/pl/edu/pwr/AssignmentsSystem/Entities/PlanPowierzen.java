@@ -2,24 +2,26 @@ package pl.edu.pwr.AssignmentsSystem.Entities;
 
 import com.sun.istack.NotNull;
 import org.springframework.lang.NonNull;
-import java. sql. Timestamp;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import java.sql.Timestamp;
+import java.util.List;
+import javax.persistence.*;
 
 @Entity
 public class PlanPowierzen {
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-@NotNull
-private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
+    private int id;
 
-private int zgodaKoordynatoraZapisow;
-private  String nazwa;
-private String  wersjaPlanu;
-private  Timestamp dataUtworzenia; // do weryfikacji
-
+    private int zgodaKoordynatoraZapisow;
+    private String nazwa;
+    private String wersjaPlanu;
+    private Timestamp dataUtworzenia; // do weryfikacji
+    @ManyToOne
+    private PlanStudiow planStudiow;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Powierzenie> powierzenia;
 
     public PlanPowierzen() {
     }
