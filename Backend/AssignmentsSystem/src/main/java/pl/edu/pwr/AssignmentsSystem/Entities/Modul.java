@@ -2,10 +2,8 @@ package pl.edu.pwr.AssignmentsSystem.Entities;
 
 import com.sun.istack.NotNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Modul {
@@ -17,6 +15,10 @@ public class Modul {
     private String nazwa;
     private int ogolnouczelniany;
     private int wybieralny;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Kurs> kursList;
+    @ManyToOne
+    private PlanStudiow planStudiow;
 
     public Modul() {
     }

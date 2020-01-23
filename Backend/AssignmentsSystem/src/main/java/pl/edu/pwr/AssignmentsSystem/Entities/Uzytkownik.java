@@ -3,6 +3,7 @@ package pl.edu.pwr.AssignmentsSystem.Entities;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Uzytkownik {
@@ -21,9 +22,15 @@ public class Uzytkownik {
     private String stanowisko;
     private int pensum;
     private int zgodaNaPrzekroczeniePensum;
-    private int  pozytywnieZaopiniowany;
+    private int pozytywnieZaopiniowany;
     private String rolaUzytkownika; //DType
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<PreferencjaProwadzacego> preferencjeProwadzacego;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<WersjaPowierzenia> wersjaPowierzen;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Powierzenie> powierzenia;
 
     public Uzytkownik() {
         super();

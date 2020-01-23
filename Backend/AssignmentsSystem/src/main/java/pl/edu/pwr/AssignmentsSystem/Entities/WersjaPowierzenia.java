@@ -2,10 +2,7 @@ package pl.edu.pwr.AssignmentsSystem.Entities;
 
 import com.sun.istack.NotNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -18,6 +15,13 @@ public class WersjaPowierzenia {
     private int liczbaGodzin;
     private int ZgodaProwadzacego;
     private Timestamp dataUtworzenia;
+    private int prowadzacyId; // bez koniecznosci polaczenia
+
+    @ManyToOne
+    private Powierzenie powierzenie;
+    @ManyToOne
+    private Uzytkownik uzytkownik;
+
 
     public int getId() {
         return id;
