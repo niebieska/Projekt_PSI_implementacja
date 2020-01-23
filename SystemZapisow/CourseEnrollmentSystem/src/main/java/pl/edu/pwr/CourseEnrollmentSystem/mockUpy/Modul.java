@@ -1,13 +1,15 @@
 package pl.edu.pwr.CourseEnrollmentSystem.mockUpy;
 
+import java.util.ArrayList;
+
 public class Modul {
     int liczbaGodzin;
     String nazwa;
     Boolean ogolnouczelniany;
     Boolean wybieralny;
-    Kurs kurs;
+    ArrayList<Kurs> kurs;
 
-    public Modul(int liczbaGodzin, String nazwa, Boolean ogolnouczelniany, Boolean wybieralny, Kurs kurs) {
+    public Modul(int liczbaGodzin, String nazwa, Boolean ogolnouczelniany, Boolean wybieralny, ArrayList<Kurs> kurs) {
         this.liczbaGodzin = liczbaGodzin;
         this.nazwa = nazwa;
         this.ogolnouczelniany = ogolnouczelniany;
@@ -47,11 +49,11 @@ public class Modul {
         this.wybieralny = wybieralny;
     }
 
-    public Kurs getKurs() {
+    public ArrayList<Kurs> getKurs() {
         return kurs;
     }
 
-    public void setKurs(Kurs kurs) {
+    public void setKurs(ArrayList<Kurs> kurs) {
         this.kurs = kurs;
     }
 }

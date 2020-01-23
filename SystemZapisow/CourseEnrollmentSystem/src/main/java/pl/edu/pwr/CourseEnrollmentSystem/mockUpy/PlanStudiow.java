@@ -1,14 +1,16 @@
 package pl.edu.pwr.CourseEnrollmentSystem.mockUpy;
 
+import java.util.ArrayList;
+
 public class PlanStudiow {
     String cyklKrztalcenia;
     int liczbaStudentow;
     String kierunekStudiow;
     String specjalnosc;
     int numerSemestru;
-    Modul modul;
+    ArrayList<Modul> modul;
 
-    public PlanStudiow(String cyklKrztalcenia, int liczbaStudentow, String kierunekStudiow, String specjalnosc, int numerSemestru, Modul modul) {
+    public PlanStudiow(String cyklKrztalcenia, int liczbaStudentow, String kierunekStudiow, String specjalnosc, int numerSemestru, ArrayList<Modul> modul) {
         this.cyklKrztalcenia = cyklKrztalcenia;
         this.liczbaStudentow = liczbaStudentow;
         this.kierunekStudiow = kierunekStudiow;
@@ -57,11 +59,11 @@ public class PlanStudiow {
         this.numerSemestru = numerSemestru;
     }
 
-    public Modul getModul() {
+    public ArrayList<Modul> getModul() {
         return modul;
     }
 
-    public void setModul(Modul modul) {
+    public void setModul(ArrayList<Modul> modul) {
         this.modul = modul;
     }
 }
