@@ -34,28 +34,28 @@ public class CourseEnrollmentSystemApplication {
         kursPd.add(Pd1);
 
         ArrayList<Kurs> kursTwwo = new ArrayList<Kurs>();
-        kursPd.add(Twwo1);
-        kursPd.add(Twwo2);
+        kursTwwo.add(Twwo1);
+        kursTwwo.add(Twwo2);
 
         ArrayList<Kurs> kursBswm = new ArrayList<Kurs>();
-        kursPd.add(Bswm1);
-        kursPd.add(Bswm2);
-        kursPd.add(Bswm3);
+        kursBswm.add(Bswm1);
+        kursBswm.add(Bswm2);
+        kursBswm.add(Bswm3);
 
         ArrayList<Kurs> kursPdzd = new ArrayList<Kurs>();
-        kursPd.add(Pdzd1);
-        kursPd.add(Pdzd2);
+        kursPdzd.add(Pdzd1);
+        kursPdzd.add(Pdzd2);
 
         ArrayList<Kurs> kursIpod = new ArrayList<Kurs>();
-        kursPd.add(Ipod1);
-        kursPd.add(Ipod2);
+        kursIpod.add(Ipod1);
+        kursIpod.add(Ipod2);
 
         ArrayList<Kurs> kursPsi = new ArrayList<Kurs>();
-        kursPd.add(Psi1);
-        kursPd.add(Psi2);
+        kursPsi.add(Psi1);
+        kursPsi.add(Psi2);
 
         ArrayList<Kurs> kursPbowi = new ArrayList<Kurs>();
-        kursPd.add(Pbowi1);
+        kursPbowi.add(Pbowi1);
 
 
         Modul mPd = new Modul(30, "Praca dyplomowa I", false, false, kursPd);
