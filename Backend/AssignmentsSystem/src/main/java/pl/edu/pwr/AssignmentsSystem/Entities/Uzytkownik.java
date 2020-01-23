@@ -11,7 +11,6 @@ public class Uzytkownik {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NonNull
     private int id;
-
     private String imie;
     private String nazwisko;
     private String email;
@@ -21,9 +20,10 @@ public class Uzytkownik {
     private String formaZatrudnienia;
     private String stanowisko;
     private int pensum;
-    private Boolean zgodaNaPrzekroczeniePensum;
-    private Boolean pozytywnieZaopiniowany;
+    private int zgodaNaPrzekroczeniePensum;
+    private int  pozytywnieZaopiniowany;
     private String rolaUzytkownika; //DType
+
 
     public Uzytkownik() {
         super();
@@ -111,19 +111,19 @@ public class Uzytkownik {
         this.pensum = pensum;
     }
 
-    public Boolean getZgodaNaPrzekroczeniePensum() {
+    public int getZgodaNaPrzekroczeniePensum() {
         return zgodaNaPrzekroczeniePensum;
     }
 
-    public void setZgodaNaPrzekroczeniePensum(Boolean zgodaNaPrzekroczeniePensum) {
+    public void setZgodaNaPrzekroczeniePensum(int zgodaNaPrzekroczeniePensum) {
         this.zgodaNaPrzekroczeniePensum = zgodaNaPrzekroczeniePensum;
     }
 
-    public Boolean getPozytywnieZaopiniowany() {
+    public int getPozytywnieZaopiniowany() {
         return pozytywnieZaopiniowany;
     }
 
-    public void setPozytywnieZaopiniowany(Boolean pozytywnieZaopiniowany) {
+    public void setPozytywnieZaopiniowany(int pozytywnieZaopiniowany) {
         this.pozytywnieZaopiniowany = pozytywnieZaopiniowany;
     }
 
