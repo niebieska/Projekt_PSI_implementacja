@@ -3,28 +3,15 @@ package pl.edu.pwr.AssignmentsSystem.Kursy.Entrypoints.Dto;
 import java.util.ArrayList;
 
 public class PlanStudiowDto {
-    String cyklKrztalcenia;
+
     int liczbaStudentow;
-    String kierunekStudiow;
-    String specjalnosc;
-    int numerSemestru;
+    IdentyfikatorSemestruDto identyfikatorSemestru;
     ArrayList<ModulDto> modulDto;
 
-    public PlanStudiowDto(String cyklKrztalcenia, int liczbaStudentow, String kierunekStudiow, String specjalnosc, int numerSemestru, ArrayList<ModulDto> modulDto) {
-        this.cyklKrztalcenia = cyklKrztalcenia;
+    public PlanStudiowDto(int liczbaStudentow, IdentyfikatorSemestruDto identyfikatorSemestru, ArrayList<ModulDto> modulDto) {
         this.liczbaStudentow = liczbaStudentow;
-        this.kierunekStudiow = kierunekStudiow;
-        this.specjalnosc = specjalnosc;
-        this.numerSemestru = numerSemestru;
+        this.identyfikatorSemestru = identyfikatorSemestru;
         this.modulDto = modulDto;
-    }
-
-    public String getCyklKrztalcenia() {
-        return cyklKrztalcenia;
-    }
-
-    public void setCyklKrztalcenia(String cyklKrztalcenia) {
-        this.cyklKrztalcenia = cyklKrztalcenia;
     }
 
     public int getLiczbaStudentow() {
@@ -35,28 +22,12 @@ public class PlanStudiowDto {
         this.liczbaStudentow = liczbaStudentow;
     }
 
-    public String getKierunekStudiow() {
-        return kierunekStudiow;
+    public IdentyfikatorSemestruDto getIdentyfikatorSemestru() {
+        return identyfikatorSemestru;
     }
 
-    public void setKierunekStudiow(String kierunekStudiow) {
-        this.kierunekStudiow = kierunekStudiow;
-    }
-
-    public String getSpecjalnosc() {
-        return specjalnosc;
-    }
-
-    public void setSpecjalnosc(String specjalnosc) {
-        this.specjalnosc = specjalnosc;
-    }
-
-    public int getNumerSemestru() {
-        return numerSemestru;
-    }
-
-    public void setNumerSemestru(int numerSemestru) {
-        this.numerSemestru = numerSemestru;
+    public void setIdentyfikatorSemestru(IdentyfikatorSemestruDto identyfikatorSemestru) {
+        this.identyfikatorSemestru = identyfikatorSemestru;
     }
 
     public ArrayList<ModulDto> getModulDto() {
@@ -67,3 +38,5 @@ public class PlanStudiowDto {
         this.modulDto = modulDto;
     }
 }
+
+
