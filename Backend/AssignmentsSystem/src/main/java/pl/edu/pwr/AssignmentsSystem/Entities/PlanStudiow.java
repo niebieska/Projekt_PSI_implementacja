@@ -17,8 +17,10 @@ public class PlanStudiow {
     private String specjalnosc;
     private int numerSemestru;
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="planStudiow")
     private List<Modul> modulList;
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="planPowierzen")
     private List<PlanPowierzen> planPowierzenList;
 
     public PlanStudiow() {

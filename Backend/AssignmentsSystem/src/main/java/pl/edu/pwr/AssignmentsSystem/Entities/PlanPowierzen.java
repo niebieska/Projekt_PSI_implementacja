@@ -21,6 +21,7 @@ public class PlanPowierzen {
     @ManyToOne
     private PlanStudiow planStudiow;
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="powierzenia")
     private List<Powierzenie> powierzenia;
 
     public PlanPowierzen() {

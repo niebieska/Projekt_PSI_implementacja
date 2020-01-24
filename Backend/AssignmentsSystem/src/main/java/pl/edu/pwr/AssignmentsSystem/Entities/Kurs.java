@@ -15,6 +15,7 @@ public class Kurs {
     private int liczbaGodzin;
     private String nazwa;
     @OneToMany
+    @JoinColumn(name="kurs")
     private List<PreferencjaProwadzacego> preferencjeProwadzacego;
     @ManyToOne
     private Modul moduly;

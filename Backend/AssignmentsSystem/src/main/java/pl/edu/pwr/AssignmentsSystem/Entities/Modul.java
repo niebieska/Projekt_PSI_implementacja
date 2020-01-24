@@ -16,6 +16,7 @@ public class Modul {
     private int ogolnouczelniany;
     private int wybieralny;
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="moduly")
     private List<Kurs> kursList;
     @ManyToOne
     private PlanStudiow planStudiow;

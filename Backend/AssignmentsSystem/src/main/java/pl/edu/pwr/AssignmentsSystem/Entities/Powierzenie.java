@@ -22,9 +22,13 @@ public class Powierzenie {
     @ManyToOne
     private Kurs kurs;
     @ManyToOne
+    @JoinColumn(name="powierzenie")
     private PlanPowierzen planPowierzen;
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="powierzenie")
     private List<WersjaPowierzenia> wersjePowierzen;
+    @ManyToOne
+    Uzytkownik koordynator;
 
     public Powierzenie() {
     }

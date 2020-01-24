@@ -26,11 +26,17 @@ public class Uzytkownik {
     private String rolaUzytkownika; //DType
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="uzytkownik")
     private List<PreferencjaProwadzacego> preferencjeProwadzacego;
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="uzytkownik")
     private List<WersjaPowierzenia> wersjaPowierzen;
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="uzytkownik")
     private List<Powierzenie> powierzenia;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="koordynator")
+    private List<Powierzenie> zarrzadzanePowierzenia;
 
     public Uzytkownik() {
         super();
