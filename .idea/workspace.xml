@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4aa39606-7dc2-4431-a244-2d12fe160172" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Backend/AssignmentsSystem/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/AssignmentsSystem/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Commons/Entities/PlanStudiow.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Commons/Entities/PlanStudiow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/java/pl/edu/pwr/AuthorizationSystem/AuthorizationSystemApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/java/pl/edu/pwr/AuthorizationSystem/AuthorizationSystemApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/resources/application.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/SystemKadrowy/HRSystem/target/" />
@@ -22,33 +24,33 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Backend/AssignmentsSystem/pom.xml">
+        <entry file="file://$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Kursy/Entrypoints/KursController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#316#317#0" expanded="true" />
-                <element signature="e#342#343#0" expanded="true" />
-              </folding>
+            <state>
+              <caret column="16" selection-start-column="16" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Kursy/Usecase/PlanStudiowService.java">
+        <entry file="file://$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/java/pl/edu/pwr/AuthorizationSystem/Configuration/AuthorizationServerConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="43" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="43" />
+            <state relative-caret-position="307">
+              <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#205#206#0" expanded="true" />
+                <element signature="e#286#287#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/java/pl/edu/pwr/AuthorizationSystem/Configuration/WebSecurityConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="42" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -57,67 +59,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Kursy/Respository/PlanStudiowRepository.java">
+        <entry file="file://$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/java/pl/edu/pwr/AuthorizationSystem/AuthorizationSystemApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="190" selection-start-line="7" selection-start-column="105" selection-end-line="7" selection-end-column="190" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="102">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Commons/Entities/PlanPowierzen.java">
+        <entry file="file://$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Commons/Entities/PlanStudiow.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Kursy/Entrypoints/Dto/ModulDto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Kursy/Entrypoints/Dto/PlanStudiowDto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Kursy/Entrypoints/Dto/KursDto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SystemKadrowy/HRSystem/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="21" selection-start-line="21" selection-end-line="24" selection-end-column="21" />
+            <state relative-caret-position="714">
+              <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -144,10 +98,7 @@
         <option value="$PROJECT_DIR$/SystemKadrowy/HRSystem/src/main/java/pl/edu/pwr/HRSystem/controller/MainController.java" />
         <option value="$PROJECT_DIR$/SystemZapisow/CourseEnrollmentSystem/src/main/java/pl/edu/pwr/CourseEnrollmentSystem/CourseEnrollmentSystemApplication.java" />
         <option value="$PROJECT_DIR$/SystemZapisow/CourseEnrollmentSystem/src/main/java/pl/edu/pwr/CourseEnrollmentSystem/controller/MainController.java" />
-        <option value="$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/pom.xml" />
         <option value="$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/java/pl/edu/pwr/AuthorizationSystem/config/AuthServerOAuth2Config.java" />
-        <option value="$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/java/pl/edu/pwr/AuthorizationSystem/AuthorizationSystemApplication.java" />
         <option value="$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Entities/Modul.java" />
         <option value="$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Entities/Kurs.java" />
@@ -163,6 +114,14 @@
         <option value="$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Kursy/Respository/PlanStudiowRepository.java" />
         <option value="$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Commons/Entities/PlanStudiow.java" />
         <option value="$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Kursy/Usecase/PlanStudiowService.java" />
+        <option value="$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/java/pl/edu/pwr/AuthorizationSystem/Configuration/ResourceServerConfig.java" />
+        <option value="$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/java/pl/edu/pwr/AuthorizationSystem/Configuration/UserController.java" />
+        <option value="$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/java/pl/edu/pwr/AuthorizationSystem/Configuration/HelloResource.java" />
+        <option value="$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/pom.xml" />
+        <option value="$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/java/pl/edu/pwr/AuthorizationSystem/Configuration/WebSecurityConfig.java" />
+        <option value="$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/java/pl/edu/pwr/AuthorizationSystem/AuthorizationSystemApplication.java" />
+        <option value="$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/java/pl/edu/pwr/AuthorizationSystem/Configuration/AuthorizationServerConfig.java" />
       </list>
     </option>
   </component>
@@ -207,141 +166,49 @@
           <expand>
             <path>
               <item name="Projekt_PSI_implementacja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AssignmentsSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="AuthorizationSystem" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Projekt_PSI_implementacja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AssignmentsSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="AuthorizationSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Projekt_PSI_implementacja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AssignmentsSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projekt_PSI_implementacja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AssignmentsSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="AuthorizationSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Projekt_PSI_implementacja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AssignmentsSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="AuthorizationSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="AssignmentsSystem" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Projekt_PSI_implementacja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AssignmentsSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="AuthorizationSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="AssignmentsSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="Commons" type="462c0819:PsiDirectoryNode" />
+              <item name="AuthorizationSystem" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Projekt_PSI_implementacja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AssignmentsSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="AuthorizationSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="AssignmentsSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="Commons" type="462c0819:PsiDirectoryNode" />
-              <item name="Entities" type="462c0819:PsiDirectoryNode" />
+              <item name="AuthorizationSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="Configuration" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Projekt_PSI_implementacja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AssignmentsSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="AssignmentsSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="Kursy" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projekt_PSI_implementacja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AssignmentsSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="AssignmentsSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="Kursy" type="462c0819:PsiDirectoryNode" />
-              <item name="Entrypoints" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projekt_PSI_implementacja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AssignmentsSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="AssignmentsSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="Kursy" type="462c0819:PsiDirectoryNode" />
-              <item name="Respository" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projekt_PSI_implementacja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AssignmentsSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="AssignmentsSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="Kursy" type="462c0819:PsiDirectoryNode" />
-              <item name="Usecase" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projekt_PSI_implementacja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AssignmentsSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="AuthorizationSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projekt_PSI_implementacja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CourseEnrollmentSystem" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projekt_PSI_implementacja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CourseEnrollmentSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projekt_PSI_implementacja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CourseEnrollmentSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projekt_PSI_implementacja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CourseEnrollmentSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projekt_PSI_implementacja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CourseEnrollmentSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="CourseEnrollmentSystem" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projekt_PSI_implementacja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CourseEnrollmentSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="CourseEnrollmentSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="mockUpy" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projekt_PSI_implementacja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HRSystem" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Projekt_PSI_implementacja" type="b2602c69:ProjectViewProjectNode" />
@@ -379,6 +246,7 @@
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Kursy/Entrypoints/Dto" />
@@ -414,7 +282,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.AssignmentsSystemApplication">
+  <component name="RunManager" selected="Spring Boot.AuthorizationSystemApplication">
     <configuration name="AssignmentsSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="AssignmentsSystem" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="pl.edu.pwr.AssignmentsSystem.AssignmentsSystemApplication" />
@@ -456,12 +324,12 @@
       <updated>1579799198146</updated>
       <workItem from="1579799203012" duration="1419000" />
       <workItem from="1579854761618" duration="2267000" />
-      <workItem from="1579867131318" duration="4531000" />
+      <workItem from="1579867131318" duration="8072000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8217000" />
+    <option name="totallyTimeSpent" value="11758000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -490,7 +358,7 @@
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="bottom" id="Version Control" order="13" />
-      <window_info anchor="bottom" id="Messages" order="14" />
+      <window_info anchor="bottom" id="Messages" order="14" weight="0.32936078" />
       <window_info anchor="bottom" id="Run Dashboard" order="15" visible="true" weight="0.3391116" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -567,20 +435,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/java/pl/edu/pwr/AuthorizationSystem/config/AuthorizationServerConfig.java" />
-    <entry file="file://$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="50" column="21" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SystemKadrowy/HRSystem/src/main/java/pl/edu/pwr/HRSystem/HrSystemApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -605,13 +459,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/java/pl/edu/pwr/AuthorizationSystem/AuthorizationSystemApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -713,24 +560,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Kursy/Entrypoints/Dto/KursDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Kursy/Entrypoints/Dto/ModulDto.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Kursy/Entrypoints/Dto/PlanStudiowDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -751,7 +584,7 @@
     <entry file="file://$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Kursy/Entrypoints/KursController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#316#317#0" expanded="true" />
@@ -772,10 +605,105 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Kursy/Usecase/PlanStudiowService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="43" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="43" />
+        <state relative-caret-position="204">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Kursy/Entrypoints/Dto/KursDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/java/pl/edu/pwr/AuthorizationSystem/Configuration/ResourceServerConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="24" column="36" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/java/pl/edu/pwr/AuthorizationSystem/Configuration/HelloResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#210#211#0" expanded="true" />
+            <element signature="e#242#243#0" expanded="true" />
+            <element signature="e#286#287#0" expanded="true" />
+            <element signature="e#322#323#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/oauth/spring-security-oauth2/2.4.0.RELEASE/spring-security-oauth2-2.4.0.RELEASE.jar!/org/springframework/security/oauth2/config/annotation/web/configuration/AuthorizationServerConfigurerAdapter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/AssignmentsSystem/src/main/java/pl/edu/pwr/AssignmentsSystem/Kursy/Entrypoints/Dto/PlanStudiowDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="16" selection-start-column="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/oauth/spring-security-oauth2/2.2.3.RELEASE/spring-security-oauth2-2.2.3.RELEASE.jar!/org/springframework/security/oauth2/config/annotation/configurers/ClientDetailsServiceConfigurer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/java/pl/edu/pwr/AuthorizationSystem/AuthorizationSystemApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/java/pl/edu/pwr/AuthorizationSystem/Configuration/WebSecurityConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="42" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SystemAutoryzacyjny/AuthorizationSystem/src/main/java/pl/edu/pwr/AuthorizationSystem/Configuration/AuthorizationServerConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#205#206#0" expanded="true" />
+            <element signature="e#286#287#0" expanded="true" />
           </folding>
         </state>
       </provider>
