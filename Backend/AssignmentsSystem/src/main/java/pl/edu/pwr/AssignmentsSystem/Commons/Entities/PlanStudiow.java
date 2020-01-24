@@ -11,7 +11,7 @@ public class PlanStudiow {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
     private int id;
-    private String cyklKrztalcenia;
+    private String cyklKsztalcenia;
     private int liczbaStudentow;
     private String kierunekStudiow;
     private String specjalnosc;
@@ -34,12 +34,12 @@ public class PlanStudiow {
         this.id = id;
     }
 
-    public String getCyklKrztalcenia() {
-        return cyklKrztalcenia;
+    public String getCyklKsztalcenia() {
+        return cyklKsztalcenia;
     }
 
-    public void setCyklKrztalcenia(String cyklKrztalcenia) {
-        this.cyklKrztalcenia = cyklKrztalcenia;
+    public void setCyklKsztalcenia(String cyklKsztalcenia) {
+        this.cyklKsztalcenia = cyklKsztalcenia;
     }
 
     public int getLiczbaStudentow() {
