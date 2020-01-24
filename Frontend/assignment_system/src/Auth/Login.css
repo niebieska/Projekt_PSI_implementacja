@@ -1,0 +1,22 @@
+@media all and (min-width: 480px) {
+    .Login {
+        padding: 60px 0;
+    }
+
+    .Login form {
+        margin: 0 auto;
+        max-width: 320px;
+    }
+}
+
+.selects-row {
+    display: flex;
+}
+
+.selects-row > div + div {
+    margin-left: 10px;
+}
+
+.selects-row > div {
+    width: 100%;
+}
