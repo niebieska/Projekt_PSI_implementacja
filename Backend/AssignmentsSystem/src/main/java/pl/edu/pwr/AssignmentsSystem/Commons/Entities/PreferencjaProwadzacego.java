@@ -1,9 +1,8 @@
-package pl.edu.pwr.AssignmentsSystem.Entities;
+package pl.edu.pwr.AssignmentsSystem.Commons.Entities;
 
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class PreferencjaProwadzacego {

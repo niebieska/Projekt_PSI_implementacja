@@ -1,7 +1,6 @@
-package pl.edu.pwr.AssignmentsSystem.Entities;
+package pl.edu.pwr.AssignmentsSystem.Commons.Entities;
 
 import com.sun.istack.NotNull;
-import org.springframework.lang.NonNull;
 
 import java.sql.Timestamp;
 import java.util.List;

@@ -1,0 +1,1 @@
+to cos robic trzeba

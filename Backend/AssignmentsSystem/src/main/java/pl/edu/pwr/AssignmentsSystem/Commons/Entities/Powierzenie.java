@@ -1,4 +1,4 @@
-package pl.edu.pwr.AssignmentsSystem.Entities;
+package pl.edu.pwr.AssignmentsSystem.Commons.Entities;
 
 import org.springframework.lang.NonNull;
 
