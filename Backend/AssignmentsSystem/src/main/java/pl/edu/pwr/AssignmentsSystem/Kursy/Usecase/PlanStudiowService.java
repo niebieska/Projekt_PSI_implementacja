@@ -3,6 +3,8 @@ package pl.edu.pwr.AssignmentsSystem.Kursy.Usecase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.edu.pwr.AssignmentsSystem.Commons.Entities.PlanStudiow;
+import pl.edu.pwr.AssignmentsSystem.Kursy.Entrypoints.Dto.IdentyfikatorSemestruDto;
+import pl.edu.pwr.AssignmentsSystem.Kursy.Entrypoints.Dto.PlanStudiowDto;
 import pl.edu.pwr.AssignmentsSystem.Kursy.Respository.PlanStudiowRepository;
 
 @Service
@@ -12,8 +14,14 @@ public class PlanStudiowService {
     private PlanStudiowRepository planStudiowRepository;
 
 
-    public PlanStudiow getPlanStudiowForKey(String cyklKsztalcenia, String kierunekStudiow, String specjalnosc, int numerSemestru)
+    public PlanStudiowDto getPlanStudiowForKey(IdentyfikatorSemestruDto identyfikatorSemestruDto)
     {
-        return planStudiowRepository.findAllByCyklKrztalceniaAndAndKierunekStudiowAndAndSpecjalnoscAndAndNumerSemestru(cyklKsztalcenia,kierunekStudiow,specjalnosc,numerSemestru);
+        PlanStudiow planStudiow =
+                planStudiowRepository
+                .findAllByCyklKrztalceniaAndAndKierunekStudiowAndAndSpecjalnoscAndAndNumerSemestru(identyfikatorSemestruDto.getCyklKsztalcenia(), identyfikatorSemestruDto
+                        .getKierunekStudiow(), identyfikatorSemestruDto.getSpecjalnosc(), Integer
+                        .parseInt(identyfikatorSemestruDto.getNumerSemestru()));
+        //PlanStudiowDto dto = new PlanStudiowDto(planStudiow.getLiczbaStudentow(), identyfikatorSemestruDto, )
+        return null;
     }
 }
