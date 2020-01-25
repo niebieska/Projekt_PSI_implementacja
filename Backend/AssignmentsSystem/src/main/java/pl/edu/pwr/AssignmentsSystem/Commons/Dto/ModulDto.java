@@ -1,6 +1,5 @@
-package pl.edu.pwr.AssignmentsSystem.Kursy.Entrypoints.Dto;
+package pl.edu.pwr.AssignmentsSystem.Commons.Dto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ModulDto {

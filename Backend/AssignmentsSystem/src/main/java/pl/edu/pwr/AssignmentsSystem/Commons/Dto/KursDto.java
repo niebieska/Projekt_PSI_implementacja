@@ -1,4 +1,4 @@
-package pl.edu.pwr.AssignmentsSystem.Kursy.Entrypoints.Dto;
+package pl.edu.pwr.AssignmentsSystem.Commons.Dto;
 
 public class KursDto {
     int id;

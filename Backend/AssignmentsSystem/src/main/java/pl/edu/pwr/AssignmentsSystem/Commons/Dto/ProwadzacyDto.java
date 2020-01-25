@@ -1,14 +1,14 @@
-package pl.edu.pwr.AssignmentsSystem.Prowadzacy.Entrypoints.Dto;
+package pl.edu.pwr.AssignmentsSystem.Commons.Dto;
 
 public class ProwadzacyDto {
-String id;
-String imie;
-String nazwisko;
-String email;
-int pensum;
-int pozostaloPensum;
+    int id;
+    String imie;
+    String nazwisko;
+    String email;
+    int pensum;
+    int pozostaloPensum;
 
-    public ProwadzacyDto(String id, String imie, String nazwisko, String email, int pensum, int pozostaloPensum) {
+    public ProwadzacyDto(int id, String imie, String nazwisko, String email, int pensum, int pozostaloPensum) {
         this.id = id;
         this.imie = imie;
         this.nazwisko = nazwisko;
@@ -17,11 +17,11 @@ int pozostaloPensum;
         this.pozostaloPensum = pozostaloPensum;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

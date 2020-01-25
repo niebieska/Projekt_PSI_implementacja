@@ -1,7 +1,7 @@
 package pl.edu.pwr.AssignmentsSystem.Preferencje.Entrypoints.Dto;
 
-import pl.edu.pwr.AssignmentsSystem.Kursy.Entrypoints.Dto.KursDto;
-import pl.edu.pwr.AssignmentsSystem.Prowadzacy.Entrypoints.Dto.ProwadzacyDto;
+import pl.edu.pwr.AssignmentsSystem.Commons.Dto.KursDto;
+import pl.edu.pwr.AssignmentsSystem.Commons.Dto.ProwadzacyDto;
 
 import java.util.ArrayList;
 

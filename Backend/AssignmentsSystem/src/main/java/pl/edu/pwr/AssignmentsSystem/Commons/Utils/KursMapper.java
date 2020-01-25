@@ -1,12 +1,12 @@
-package pl.edu.pwr.AssignmentsSystem.Kursy.Utils;
+package pl.edu.pwr.AssignmentsSystem.Commons.Utils;
 
 import pl.edu.pwr.AssignmentsSystem.Commons.Entities.Kurs;
 import pl.edu.pwr.AssignmentsSystem.Commons.Entities.Modul;
 import pl.edu.pwr.AssignmentsSystem.Commons.Entities.PlanStudiow;
-import pl.edu.pwr.AssignmentsSystem.Kursy.Entrypoints.Dto.IdentyfikatorSemestruDto;
-import pl.edu.pwr.AssignmentsSystem.Kursy.Entrypoints.Dto.KursDto;
-import pl.edu.pwr.AssignmentsSystem.Kursy.Entrypoints.Dto.ModulDto;
-import pl.edu.pwr.AssignmentsSystem.Kursy.Entrypoints.Dto.PlanStudiowDto;
+import pl.edu.pwr.AssignmentsSystem.Commons.Dto.IdentyfikatorSemestruDto;
+import pl.edu.pwr.AssignmentsSystem.Commons.Dto.KursDto;
+import pl.edu.pwr.AssignmentsSystem.Commons.Dto.ModulDto;
+import pl.edu.pwr.AssignmentsSystem.Commons.Dto.PlanStudiowDto;
 
 import java.util.stream.Collectors;
 

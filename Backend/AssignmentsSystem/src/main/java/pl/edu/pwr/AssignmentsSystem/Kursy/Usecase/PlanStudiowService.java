@@ -5,10 +5,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pl.edu.pwr.AssignmentsSystem.Commons.Entities.PlanStudiow;
-import pl.edu.pwr.AssignmentsSystem.Kursy.Entrypoints.Dto.IdentyfikatorSemestruDto;
-import pl.edu.pwr.AssignmentsSystem.Kursy.Entrypoints.Dto.PlanStudiowDto;
+import pl.edu.pwr.AssignmentsSystem.Commons.Dto.IdentyfikatorSemestruDto;
+import pl.edu.pwr.AssignmentsSystem.Commons.Dto.PlanStudiowDto;
 import pl.edu.pwr.AssignmentsSystem.Kursy.Respository.PlanStudiowRepository;
-import pl.edu.pwr.AssignmentsSystem.Kursy.Utils.KursMapper;
+import pl.edu.pwr.AssignmentsSystem.Commons.Utils.KursMapper;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -33,6 +33,14 @@ public class PlanStudiowService {
                                 .getKierunekStudiow(), identyfikatorSemestruDto
                                 .getSpecjalnosc(), identyfikatorSemestruDto.getNumerSemestru());
         return Optional.ofNullable(planStudiow).map(KursMapper::toPlanStudioDto).orElse(null);
+    }
+    public PlanStudiow getPlanStudiow(IdentyfikatorSemestruDto identyfikatorSemestruDto) {
+
+                return planStudiowRepository
+                        .findAllByCyklKsztalceniaAndAndKierunekStudiowAndAndSpecjalnoscAndAndNumerSemestru(identyfikatorSemestruDto
+                                .getCyklKsztalcenia(), identyfikatorSemestruDto
+                                .getKierunekStudiow(), identyfikatorSemestruDto
+                                .getSpecjalnosc(), identyfikatorSemestruDto.getNumerSemestru());
     }
 
     public boolean importKursFromExternalSystem() {

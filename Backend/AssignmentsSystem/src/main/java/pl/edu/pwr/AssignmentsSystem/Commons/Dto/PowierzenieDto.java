@@ -1,17 +1,14 @@
-package pl.edu.pwr.AssignmentsSystem.Powierzenia.Entrypoints.Dto;
-
-import pl.edu.pwr.AssignmentsSystem.Kursy.Entrypoints.Dto.KursDto;
-import pl.edu.pwr.AssignmentsSystem.Prowadzacy.Entrypoints.Dto.ProwadzacyDto;
+package pl.edu.pwr.AssignmentsSystem.Commons.Dto;
 
 public class PowierzenieDto {
 
-    String id;
+    int id;
     ProwadzacyDto prowadzacy;
     KursDto kurs;
     int liczbaGodzin;
     Boolean zgodaProwadzacego;
 
-    public PowierzenieDto(String id, ProwadzacyDto prowadzacy, KursDto kurs, int liczbaGodzin, Boolean zgodaProwadzacego) {
+    public PowierzenieDto(int id, ProwadzacyDto prowadzacy, KursDto kurs, int liczbaGodzin, Boolean zgodaProwadzacego) {
         this.id = id;
         this.prowadzacy = prowadzacy;
         this.kurs = kurs;
@@ -20,11 +17,11 @@ public class PowierzenieDto {
     }
 
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

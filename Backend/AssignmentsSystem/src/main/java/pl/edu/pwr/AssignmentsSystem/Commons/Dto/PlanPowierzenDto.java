@@ -1,28 +1,27 @@
-package pl.edu.pwr.AssignmentsSystem.Powierzenia.Entrypoints.Dto;
-
-import pl.edu.pwr.AssignmentsSystem.Kursy.Entrypoints.Dto.IdentyfikatorSemestruDto;
+package pl.edu.pwr.AssignmentsSystem.Commons.Dto;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlanPowierzenDto {
 
-    ArrayList<PowierzenieDto> powierzenia;
+    List<PowierzenieDto> powierzenia;
     String nazwa;
     IdentyfikatorSemestruDto identyfikatorSemestru;
     Boolean zatwierdzony;
 
-    public PlanPowierzenDto(ArrayList<PowierzenieDto> powierzenia, String nazwa, IdentyfikatorSemestruDto identyfikatorSemestru, Boolean zatwierdzony) {
+    public PlanPowierzenDto(List<PowierzenieDto> powierzenia, String nazwa, IdentyfikatorSemestruDto identyfikatorSemestru, Boolean zatwierdzony) {
         this.powierzenia = powierzenia;
         this.nazwa = nazwa;
         this.identyfikatorSemestru = identyfikatorSemestru;
         this.zatwierdzony = zatwierdzony;
     }
 
-    public ArrayList<PowierzenieDto> getPowierzenia() {
+    public List<PowierzenieDto> getPowierzenia() {
         return powierzenia;
     }
 
-    public void setPowierzenia(ArrayList<PowierzenieDto> powierzenia) {
+    public void setPowierzenia(List<PowierzenieDto> powierzenia) {
         this.powierzenia = powierzenia;
     }
 
