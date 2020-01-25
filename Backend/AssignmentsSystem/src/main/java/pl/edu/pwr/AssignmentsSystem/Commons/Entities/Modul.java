@@ -13,13 +13,11 @@ public class Modul {
     private int id;
     private int liczbaGodzin;
     private String nazwa;
-    private int ogolnouczelniany;
-    private int wybieralny;
+    private boolean ogolnouczelniany;
+    private boolean wybieralny;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="moduly")
     private List<Kurs> kursList;
-    @ManyToOne
-    private PlanStudiow planStudiow;
 
     public Modul() {
     }
@@ -48,19 +46,37 @@ public class Modul {
         this.nazwa = nazwa;
     }
 
-    public int getOgolnouczelniany() {
+    public Modul(int liczbaGodzin, String nazwa, boolean ogolnouczelniany, boolean wybieralny, List<Kurs> kursList,
+            PlanStudiow planStudiow) {
+        this.liczbaGodzin = liczbaGodzin;
+        this.nazwa = nazwa;
+        this.ogolnouczelniany = ogolnouczelniany;
+        this.wybieralny = wybieralny;
+        this.kursList = kursList;
+    }
+
+    public boolean isOgolnouczelniany() {
         return ogolnouczelniany;
     }
 
-    public void setOgolnouczelniany(int ogolnouczelniany) {
+    public void setOgolnouczelniany(boolean ogolnouczelniany) {
         this.ogolnouczelniany = ogolnouczelniany;
     }
 
-    public int getWybieralny() {
+    public boolean isWybieralny() {
         return wybieralny;
     }
 
-    public void setWybieralny(int wybieralny) {
+    public void setWybieralny(boolean wybieralny) {
         this.wybieralny = wybieralny;
     }
+
+    public List<Kurs> getKursList() {
+        return kursList;
+    }
+
+    public void setKursList(List<Kurs> kursList) {
+        this.kursList = kursList;
+    }
+
 }

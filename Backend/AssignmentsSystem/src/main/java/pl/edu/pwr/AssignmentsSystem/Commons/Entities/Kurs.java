@@ -17,10 +17,18 @@ public class Kurs {
     @OneToMany
     @JoinColumn(name="kurs")
     private List<PreferencjaProwadzacego> preferencjeProwadzacego;
-    @ManyToOne
-    private Modul moduly;
+    private int liczbaGrup;
 
     public Kurs() {
+    }
+
+    public Kurs(String formaZajec, int liczbaGodzin, String nazwa,
+            List<PreferencjaProwadzacego> preferencjeProwadzacego, Modul moduly, int liczbaGrup) {
+        this.formaZajec = formaZajec;
+        this.liczbaGodzin = liczbaGodzin;
+        this.nazwa = nazwa;
+        this.preferencjeProwadzacego = preferencjeProwadzacego;
+        this.liczbaGrup = liczbaGrup;
     }
 
     public int getId() {
@@ -53,5 +61,22 @@ public class Kurs {
 
     public void setNazwa(String nazwa) {
         this.nazwa = nazwa;
+    }
+
+    public List<PreferencjaProwadzacego> getPreferencjeProwadzacego() {
+        return preferencjeProwadzacego;
+    }
+
+    public void setPreferencjeProwadzacego(List<PreferencjaProwadzacego> preferencjeProwadzacego) {
+        this.preferencjeProwadzacego = preferencjeProwadzacego;
+    }
+
+
+    public int getLiczbaGrup() {
+        return liczbaGrup;
+    }
+
+    public void setLiczbaGrup(int liczbaGrup) {
+        this.liczbaGrup = liczbaGrup;
     }
 }

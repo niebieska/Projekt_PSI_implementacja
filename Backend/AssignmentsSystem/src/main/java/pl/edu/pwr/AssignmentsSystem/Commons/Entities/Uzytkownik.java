@@ -148,4 +148,36 @@ public class Uzytkownik {
     public void setRolaUzytkownika(String rolaUzytkownika) {
         this.rolaUzytkownika = rolaUzytkownika;
     }
+
+    public List<PreferencjaProwadzacego> getPreferencjeProwadzacego() {
+        return preferencjeProwadzacego;
+    }
+
+    public void setPreferencjeProwadzacego(List<PreferencjaProwadzacego> preferencjeProwadzacego) {
+        this.preferencjeProwadzacego = preferencjeProwadzacego;
+    }
+
+    public List<WersjaPowierzenia> getWersjaPowierzen() {
+        return wersjaPowierzen;
+    }
+
+    public void setWersjaPowierzen(List<WersjaPowierzenia> wersjaPowierzen) {
+        this.wersjaPowierzen = wersjaPowierzen;
+    }
+
+    public List<Powierzenie> getPowierzenia() {
+        return powierzenia;
+    }
+
+    public void setPowierzenia(List<Powierzenie> powierzenia) {
+        this.powierzenia = powierzenia;
+    }
+
+    public List<Powierzenie> getZarrzadzanePowierzenia() {
+        return zarrzadzanePowierzenia;
+    }
+
+    public void setZarrzadzanePowierzenia(List<Powierzenie> zarrzadzanePowierzenia) {
+        this.zarrzadzanePowierzenia = zarrzadzanePowierzenia;
+    }
 }

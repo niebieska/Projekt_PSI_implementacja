@@ -1,14 +1,14 @@
 package pl.edu.pwr.AssignmentsSystem.Kursy.Entrypoints.Dto;
 
 public class KursDto {
-    String id;
+    int id;
     String formaZajec;
     int liczbaGodzin;
     int liczbaGrup;
     String nazwa;
 
 
-    public KursDto(String id, String formaZajec, int liczbaGodzin, int liczbaGrup, String nazwa) {
+    public KursDto(int id, String formaZajec, int liczbaGodzin, int liczbaGrup, String nazwa) {
         this.id = id;
         this.formaZajec = formaZajec;
         this.liczbaGodzin = liczbaGodzin;
@@ -16,11 +16,14 @@ public class KursDto {
         this.nazwa = nazwa;
     }
 
-    public String getId() {
+    public KursDto() {
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

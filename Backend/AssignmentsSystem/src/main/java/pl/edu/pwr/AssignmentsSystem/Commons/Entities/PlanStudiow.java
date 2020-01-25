@@ -73,4 +73,20 @@ public class PlanStudiow {
     public void setNumerSemestru(int numerSemestru) {
         this.numerSemestru = numerSemestru;
     }
+
+    public List<Modul> getModulList() {
+        return modulList;
+    }
+
+    public void setModulList(List<Modul> modulList) {
+        this.modulList = modulList;
+    }
+
+    public List<PlanPowierzen> getPlanPowierzenList() {
+        return planPowierzenList;
+    }
+
+    public void setPlanPowierzenList(List<PlanPowierzen> planPowierzenList) {
+        this.planPowierzenList = planPowierzenList;
+    }
 }

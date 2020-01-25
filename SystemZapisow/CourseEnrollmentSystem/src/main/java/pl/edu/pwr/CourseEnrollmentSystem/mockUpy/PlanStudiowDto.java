@@ -1,4 +1,4 @@
-package pl.edu.pwr.AssignmentsSystem.Kursy.Entrypoints.Dto;
+package pl.edu.pwr.CourseEnrollmentSystem.mockUpy;
 
 import java.util.List;
 
@@ -12,9 +12,6 @@ public class PlanStudiowDto {
         this.liczbaStudentow = liczbaStudentow;
         this.identyfikatorSemestru = identyfikatorSemestru;
         this.modulDto = modulDto;
-    }
-
-    public PlanStudiowDto() {
     }
 
     public int getLiczbaStudentow() {

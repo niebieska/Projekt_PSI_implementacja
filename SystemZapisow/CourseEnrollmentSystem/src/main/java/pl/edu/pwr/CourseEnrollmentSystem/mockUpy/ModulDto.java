@@ -1,20 +1,30 @@
 package pl.edu.pwr.CourseEnrollmentSystem.mockUpy;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class Modul {
+public class ModulDto {
+    int id;
     int liczbaGodzin;
     String nazwa;
     Boolean ogolnouczelniany;
     Boolean wybieralny;
-    ArrayList<Kurs> kurs;
+    List<KursDto> kursy;
 
-    public Modul(int liczbaGodzin, String nazwa, Boolean ogolnouczelniany, Boolean wybieralny, ArrayList<Kurs> kurs) {
+    public ModulDto(int id, int liczbaGodzin, String nazwa, Boolean ogolnouczelniany, Boolean wybieralny, List<KursDto> kursy) {
+        this.id = id;
         this.liczbaGodzin = liczbaGodzin;
         this.nazwa = nazwa;
         this.ogolnouczelniany = ogolnouczelniany;
         this.wybieralny = wybieralny;
-        this.kurs = kurs;
+        this.kursy = kursy;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getLiczbaGodzin() {
@@ -49,11 +59,11 @@ public class Modul {
         this.wybieralny = wybieralny;
     }
 
-    public ArrayList<Kurs> getKurs() {
-        return kurs;
+    public List<KursDto> getKursy() {
+        return kursy;
     }
 
-    public void setKurs(ArrayList<Kurs> kurs) {
-        this.kurs = kurs;
+    public void setKursy(List<KursDto> kursy) {
+        this.kursy = kursy;
     }
 }

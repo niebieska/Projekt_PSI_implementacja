@@ -1,16 +1,17 @@
 package pl.edu.pwr.AssignmentsSystem.Kursy.Entrypoints.Dto;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ModulDto {
-    String id;
+    int id;
     int liczbaGodzin;
     String nazwa;
     Boolean ogolnouczelniany;
     Boolean wybieralny;
-    ArrayList<KursDto> kursy;
+    List<KursDto> kursy;
 
-    public ModulDto(String id, int liczbaGodzin, String nazwa, Boolean ogolnouczelniany, Boolean wybieralny, ArrayList<KursDto> kursy) {
+    public ModulDto(int id, int liczbaGodzin, String nazwa, Boolean ogolnouczelniany, Boolean wybieralny, List<KursDto> kursy) {
         this.id = id;
         this.liczbaGodzin = liczbaGodzin;
         this.nazwa = nazwa;
@@ -19,12 +20,15 @@ public class ModulDto {
         this.kursy = kursy;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public ModulDto() {
     }
 
     public int getLiczbaGodzin() {
@@ -59,11 +63,11 @@ public class ModulDto {
         this.wybieralny = wybieralny;
     }
 
-    public ArrayList<KursDto> getKursy() {
+    public List<KursDto> getKursy() {
         return kursy;
     }
 
-    public void setKursy(ArrayList<KursDto> kursy) {
+    public void setKursy(List<KursDto> kursy) {
         this.kursy = kursy;
     }
 }

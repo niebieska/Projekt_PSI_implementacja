@@ -16,5 +16,27 @@ public class PreferencjaProwadzacego {
     @ManyToOne
     private Kurs kurs;
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Uzytkownik getUzytkownik() {
+        return uzytkownik;
+    }
+
+    public void setUzytkownik(Uzytkownik uzytkownik) {
+        this.uzytkownik = uzytkownik;
+    }
+
+    public Kurs getKurs() {
+        return kurs;
+    }
+
+    public void setKurs(Kurs kurs) {
+        this.kurs = kurs;
+    }
 }

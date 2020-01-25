@@ -21,9 +21,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                     .inMemory()
                     .withClient("test")
                     .secret(passwordEncoder().encode("test"))
-                    .scopes("resource:any")
+                    .scopes("any")
                     .authorizedGrantTypes("authorization_code")
-                    .redirectUris("http://localhost:8081/terazMamAutoryzacje");
+                    .redirectUris("http://localhost:8080/hello");
         } catch (Exception e) {
             e.printStackTrace();
         }

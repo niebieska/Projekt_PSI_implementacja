@@ -63,5 +63,27 @@ public class WersjaPowierzenia {
         this.dataUtworzenia = dataUtworzenia;
     }
 
+    public int getProwadzacyId() {
+        return prowadzacyId;
+    }
 
+    public void setProwadzacyId(int prowadzacyId) {
+        this.prowadzacyId = prowadzacyId;
+    }
+
+    public Powierzenie getPowierzenie() {
+        return powierzenie;
+    }
+
+    public void setPowierzenie(Powierzenie powierzenie) {
+        this.powierzenie = powierzenie;
+    }
+
+    public Uzytkownik getUzytkownik() {
+        return uzytkownik;
+    }
+
+    public void setUzytkownik(Uzytkownik uzytkownik) {
+        this.uzytkownik = uzytkownik;
+    }
 }
