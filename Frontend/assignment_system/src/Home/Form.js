@@ -15,18 +15,18 @@ export default function HomeForm() {
         <>
             <Row>
                 <Col>
-                    <p className="float-left">TextTextTextTextText</p>
-                    <Button variant="primary" className="float-right">Logout</Button>
+                    <p className="float-left">Jesteś zalogowany jako koordynator powierzeń</p>
+                    <Button variant="primary" className="float-right">Wyloguj</Button>
                 </Col>
             </Row>
             <Row className="mb-3">
                 <Col>
-                    <Button className="float-left" onClick={onClickToSub}>TetTetText</Button>
+                    <Button className="float-left" onClick={onClickToSub}>Przedzielanie powierzeń dla modułów obowiązkowych</Button>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <Button className="float-left">TetTetText</Button>
+                    <Button className="float-left">Przedzielanie powierzeń dla modułów wybieralnych</Button>
                 </Col>
 
             </Row>
