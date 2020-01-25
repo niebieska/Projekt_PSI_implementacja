@@ -35,7 +35,7 @@ export function LoginForm(props) {
                     />
                 </FormGroup>
                 <FormGroup controlId="password">
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>Hasło</FormLabel>
                     <FormControl
                         value={password}
                         onChange={e => setPassword(e.target.value)}

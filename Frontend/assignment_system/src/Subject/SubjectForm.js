@@ -18,8 +18,8 @@ export default function HomeForm() {
             <Row>
                 <Col>
                     <Form.Group className="d-flex justify-content-between">
-                        <p>TextTextTextTextText</p>
-                        <Button variant="primary">Logout</Button>
+                        <p>Przedzielanie powierzeń dla modułów obowiązkowych</p>
+                        <Button variant="primary">Wyloguj</Button>
                     </Form.Group>
                 </Col>
             </Row>
@@ -36,7 +36,7 @@ export default function HomeForm() {
                     </Form.Group>
                 </Col>
                 <Col md={2}>
-                    Text
+                    Nazwa planu powierzeń
                 </Col>
                 <Col md={5}>
                     <Form.Control />
@@ -46,26 +46,26 @@ export default function HomeForm() {
                 <Col md={10}>
                     <Form.Group className="selects-row">
                         <div>
-                            <Form.Label>Text</Form.Label>
+                            <Form.Label>Kierunek</Form.Label>
                             <Select options={[1,2,3,4,5]} onChange={setSpec} />
                         </div>
                         <div>
-                            <Form.Label>Text</Form.Label>
+                            <Form.Label>Specjalność</Form.Label>
                             <Select options={[1,2,3,4,5]} />
                         </div>
                         <div>
-                            <Form.Label>Text</Form.Label>
+                            <Form.Label>Rok</Form.Label>
                             <Select options={[1,2,3,4,5]} />
                         </div>
                         <div>
-                            <Form.Label>Text</Form.Label>
+                            <Form.Label>Semestr</Form.Label>
                             <Select options={[1,2,3,4,5]} />
                         </div>
                     </Form.Group>
                 </Col>
             </Row>
             <Row>
-                <Button type="submit" onClick={submit}>Submit</Button>
+                <Button type="submit" onClick={submit}>Zatwierdz</Button>
             </Row>
         </Form>
     )
