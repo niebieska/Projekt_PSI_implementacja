@@ -1,4 +1,4 @@
-package pl.edu.pwr.AssignmentsSystem.Kursy.Entrypoints.Dto;
+package pl.edu.pwr.CourseEnrollmentSystem.mockUpy;
 
 public class IdentyfikatorSemestruDto {
 
@@ -13,9 +13,6 @@ public class IdentyfikatorSemestruDto {
         this.kierunekStudiow = kierunekStudiow;
         this.specjalnosc = specjalnosc;
         this.numerSemestru = numerSemestru;
-    }
-
-    public IdentyfikatorSemestruDto() {
     }
 
     public String getCyklKsztalcenia() {

@@ -65,4 +65,20 @@ public class PlanPowierzen {
     public void setDataUtworzenia(Timestamp dataUtworzenia) {
         this.dataUtworzenia = dataUtworzenia;
     }
+
+    public PlanStudiow getPlanStudiow() {
+        return planStudiow;
+    }
+
+    public void setPlanStudiow(PlanStudiow planStudiow) {
+        this.planStudiow = planStudiow;
+    }
+
+    public List<Powierzenie> getPowierzenia() {
+        return powierzenia;
+    }
+
+    public void setPowierzenia(List<Powierzenie> powierzenia) {
+        this.powierzenia = powierzenia;
+    }
 }

@@ -21,4 +21,13 @@ public class KursController {
         return planStudiowService
                 .getPlanStudiowForKey(identyfikatorSemestruDto);
     }
+    @GetMapping("/importCoursesFromExternalSystem")
+    public boolean importCourses(){
+        return planStudiowService.importKursFromExternalSystem();
+    }
+
+    @GetMapping("/hello")
+    public String hello(){
+        return "Hello";
+    }
 }

@@ -72,4 +72,44 @@ public class Powierzenie {
     public void setAktywny(int aktywny) {
         this.aktywny = aktywny;
     }
+
+    public Uzytkownik getUzytkownik() {
+        return uzytkownik;
+    }
+
+    public void setUzytkownik(Uzytkownik uzytkownik) {
+        this.uzytkownik = uzytkownik;
+    }
+
+    public Kurs getKurs() {
+        return kurs;
+    }
+
+    public void setKurs(Kurs kurs) {
+        this.kurs = kurs;
+    }
+
+    public PlanPowierzen getPlanPowierzen() {
+        return planPowierzen;
+    }
+
+    public void setPlanPowierzen(PlanPowierzen planPowierzen) {
+        this.planPowierzen = planPowierzen;
+    }
+
+    public List<WersjaPowierzenia> getWersjePowierzen() {
+        return wersjePowierzen;
+    }
+
+    public void setWersjePowierzen(List<WersjaPowierzenia> wersjePowierzen) {
+        this.wersjePowierzen = wersjePowierzen;
+    }
+
+    public Uzytkownik getKoordynator() {
+        return koordynator;
+    }
+
+    public void setKoordynator(Uzytkownik koordynator) {
+        this.koordynator = koordynator;
+    }
 }
