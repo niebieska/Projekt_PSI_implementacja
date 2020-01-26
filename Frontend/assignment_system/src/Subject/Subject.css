@@ -5,3 +5,10 @@
 .row-padding {
     padding-top: 1rem;
 }
+
+.report-box {
+    border-color: black;
+    border-style: solid;
+    margin-top: 1rem;
+    height: auto;
+}

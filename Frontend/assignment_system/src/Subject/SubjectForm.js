@@ -1,9 +1,8 @@
-import React, {useState} from "react";
-import {Button, Col, Row, Form, Table } from "react-bootstrap";
+import React, { useEffect, useState } from 'react'
+import {Button, Col, Row, Form, Table, Modal, FormControl } from "react-bootstrap";
 import {Select} from "../Common/Select";
-
-
-
+import './Subject.css'
+import { getSubjects } from '../api'
 
 export default function HomeForm() {
     const [kierunek, setKierunek] = useState(1);
@@ -11,6 +10,17 @@ export default function HomeForm() {
     const [rok, setRok] = useState(1);
     const [semestr, setSemestr] = useState(1);
     const [typ, setTyp] = useState("Nowe przedzielenie");
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const [subjects, setSubjects] = useState([]);
+
+    useEffect(() => {
+        getSubjects().then((subjects) => {
+            setSubjects(subjects)
+        })
+    }, []);
 
     function submit(event) {
         event.preventDefault();
@@ -82,42 +92,32 @@ export default function HomeForm() {
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Projektowanie systemów informatycznych</td>
-                        <td>15</td>
-                        <td>Wykład</td>
-                        <td>0</td>
-                        <td>
+                    {subjects.map((sub) => (
+                        <tr key={sub.id}>
+                            <td>{sub.id}</td>
+                            <td>{sub.name}</td>
+                            <td>{sub.totalHours}</td>
+                            <td>{sub.type}</td>
+                            <td>{sub.remainHours}</td>
                             <td>
-                                <p>Mykhailo Stavniichuk</p>
+                                <td>
+                                    <p>{sub.mentor}</p>
+                                </td>
+                                <td> <Button className="round-button" onClick={handleShow}>+</Button></td>
                             </td>
-                            <td> <Button style={{borderRadius: 100 + '%'}}>+</Button></td>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>2</td>
-                        <td>Projektowanie systemów informatycznych</td>
-                        <td>30</td>
-                        <td>Projekt</td>
-                        <td>15</td>
-                        <td>
-                            <td> <p>Mykhailo Stavniichuk</p></td>
-                            <td> <Button style={{borderRadius: 100 + '%'}}>+</Button></td>
-                        </td>
-                    </tr>
+                        </tr>
+                    ))}
                     </tbody>
                 </Table>
 
             </Row>
-            <Row>
-                <Button type="submit" style={{marginRight: 0.5 + 'rem'}}>Zapisz wersję roboczą</Button>
+            <Row className="justify-content-end">
+                <Button type="submit" className="mr-2">Zapisz wersję roboczą</Button>
                 <Button type="submit" onClick={submit}>Zatwierdz</Button>
             </Row>
 
             <Row>
-                <Col md={4} style={{borderColor: 'black', borderStyle: 'solid', marginTop: 1 + 'rem', height: 'auto'}}>
+                <Col md={4} className="report-box">
 
                     <Form >
                         <p className="d-flex">Raporty</p>
@@ -136,15 +136,94 @@ export default function HomeForm() {
                                     label={`Aktualne powierzenia pracowników`}
                                     className="d-flex"
                                 />
-                                <Button type="submit" style={{float: 'right'}}>Generuj</Button>
+
+                                <div className="d-flex justify-content-end">
+                                    <Button type="submit" className="float-right">Generuj</Button>
+                                </div>
                             </div>
                         ))}
 
                     </Form>
-
-
                 </Col>
             </Row>
+
+
+            <Modal show={show} onHide={handleClose}  size="lg" aria-labelledby="contained-modal-title-vcenter"  centered>
+                <Modal.Header closeButton>
+                    <Modal.Title>Lista dostępnych prowadzących</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+
+                    {['checkbox'].map(type => (
+                        <div key={`default-${type}`} className="mb-3" >
+                            <Row>
+                                <Col>
+                                    <Form.Check
+                                        type={type}
+                                        id={`1-${type}`}
+                                        label={`Historyczna  obsada`}
+                                        className="d-flex"
+                                    />
+                                </Col>
+                                <Col>
+                                    <Form.Check
+                                        type={type}
+                                        id={`2-${type}`}
+                                        label={`Preferencja prowadzącego`}
+                                        className="d-flex"
+                                    />
+                                </Col>
+                            </Row>
+                        </div>
+                    ))}
+                    <Row>
+                        <Col>
+                            <p><FormControl type="text" placeholder="Wyszukaj" className="mr-sm-2" /></p>
+                        </Col>
+                    </Row>
+
+                    <Row>
+                        <Col>
+                            <Table striped bordered hover>
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Prowadzący</th>
+                                    <th>Pozostawy pensum do przedzielenia</th>
+                                    <th>Proponowana liczba godzin</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mykhailo Stavniichuk</td>
+                                    <td>150</td>
+                                    <td><FormControl type="text" className="mr-sm-2"/></td>
+                                </tr>
+                                </tbody>
+                            </Table>
+                        </Col>
+                    </Row>
+
+                    <Form.Group className="d-flex justify-content-between ">
+
+                        <p> Pozostała liczba godzin do pezedzielenia - 25 </p>
+
+                        <div>
+                            <Button variant="secondary" className="mr-2" onClick={handleClose}>
+                                Close
+                            </Button>
+                            <Button variant="primary" onClick={handleClose}>
+                                Save Changes
+                            </Button>
+                        </div>
+                    </Form.Group>
+
+
+                </Modal.Body>
+            </Modal>
+
         </Form>
     )
 }
