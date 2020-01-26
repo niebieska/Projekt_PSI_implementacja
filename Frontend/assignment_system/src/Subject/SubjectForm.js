@@ -117,7 +117,7 @@ export default function HomeForm() {
             </Row>
 
             <Row>
-                <Col md={4} style={{borderColor: 'black', borderStyle: 'solid', marginTop: 1 + 'rem', height: 140 +'px'}}>
+                <Col md={4} style={{borderColor: 'black', borderStyle: 'solid', marginTop: 1 + 'rem', height: 'auto'}}>
 
                     <Form >
                         <p className="d-flex">Raporty</p>
