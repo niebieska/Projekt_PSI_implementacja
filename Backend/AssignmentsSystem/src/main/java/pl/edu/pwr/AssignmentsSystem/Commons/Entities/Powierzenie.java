@@ -1,12 +1,19 @@
 package pl.edu.pwr.AssignmentsSystem.Commons.Entities;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.lang.NonNull;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
+@EnableTransactionManagement
+@EnableJpaRepositories
+@EnableJpaAuditing
 public class Powierzenie {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,21 +21,20 @@ public class Powierzenie {
     private int id;
     private int liczbaGodzin;
     private boolean zgodaProwadzacego;
+
+    @CreatedDate
     private Timestamp dataUtworzenia;
-    private int aktywny;
+    private boolean aktywny;
 
     @ManyToOne
-    Uzytkownik uzytkownik;
+    private Uzytkownik uzytkownik;
     @ManyToOne
     private Kurs kurs;
-    @ManyToOne
-    @JoinColumn(name="powierzenie")
-    private PlanPowierzen planPowierzen;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="powierzenie")
     private List<WersjaPowierzenia> wersjePowierzen;
     @ManyToOne
-    Uzytkownik koordynator;
+    private Uzytkownik koordynator;
 
     public Powierzenie() {
     }
@@ -65,11 +71,11 @@ public class Powierzenie {
         this.dataUtworzenia = dataUtworzenia;
     }
 
-    public int getAktywny() {
+    public boolean isAktywny() {
         return aktywny;
     }
 
-    public void setAktywny(int aktywny) {
+    public void setAktywny(boolean aktywny) {
         this.aktywny = aktywny;
     }
 
@@ -87,14 +93,6 @@ public class Powierzenie {
 
     public void setKurs(Kurs kurs) {
         this.kurs = kurs;
-    }
-
-    public PlanPowierzen getPlanPowierzen() {
-        return planPowierzen;
-    }
-
-    public void setPlanPowierzen(PlanPowierzen planPowierzen) {
-        this.planPowierzen = planPowierzen;
     }
 
     public List<WersjaPowierzenia> getWersjePowierzen() {

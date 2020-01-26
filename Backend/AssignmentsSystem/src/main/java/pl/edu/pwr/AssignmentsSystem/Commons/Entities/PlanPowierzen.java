@@ -1,12 +1,18 @@
 package pl.edu.pwr.AssignmentsSystem.Commons.Entities;
 
 import com.sun.istack.NotNull;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.sql.Timestamp;
 import java.util.List;
 import javax.persistence.*;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class PlanPowierzen {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,7 +22,8 @@ public class PlanPowierzen {
     private boolean zgodaKoordynatoraZapisow;
     private String nazwa;
     private String wersjaPlanu;
-    private Timestamp dataUtworzenia; // do weryfikacji
+    @CreatedDate
+    private String dataUtworzenia; // do weryfikacji
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="powierzenia")
     private List<Powierzenie> powierzenia;
@@ -56,11 +63,11 @@ public class PlanPowierzen {
         this.wersjaPlanu = wersjaPlanu;
     }
 
-    public Timestamp getDataUtworzenia() {
+    public String getDataUtworzenia() {
         return dataUtworzenia;
     }
 
-    public void setDataUtworzenia(Timestamp dataUtworzenia) {
+    public void setDataUtworzenia(String dataUtworzenia) {
         this.dataUtworzenia = dataUtworzenia;
     }
 

@@ -7,6 +7,12 @@ public class ProwadzacyDto {
     String email;
     int pensum;
     int pozostaloPensum;
+    String tytulNaukowy;
+    String formaZatrudnienia;
+    String stanowisko;
+    Boolean zgodaNaPrzekroczeniePensum;
+    Boolean pozytywneZaopiniowanie;
+
 
     public ProwadzacyDto(int id, String imie, String nazwisko, String email, int pensum, int pozostaloPensum) {
         this.id = id;
@@ -15,6 +21,65 @@ public class ProwadzacyDto {
         this.email = email;
         this.pensum = pensum;
         this.pozostaloPensum = pozostaloPensum;
+    }
+
+    public ProwadzacyDto(int id, String imie, String nazwisko, String email, int pensum, int pozostaloPensum,
+            String tytulNaukowy, String formaZatrudnienia, String stanowisko, Boolean zgodaNaPrzekroczeniePensum,
+            Boolean pozytywneZaopiniowanie) {
+        this.id = id;
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        this.email = email;
+        this.pensum = pensum;
+        this.pozostaloPensum = pozostaloPensum;
+        this.tytulNaukowy = tytulNaukowy;
+        this.formaZatrudnienia = formaZatrudnienia;
+        this.stanowisko = stanowisko;
+        this.zgodaNaPrzekroczeniePensum = zgodaNaPrzekroczeniePensum;
+        this.pozytywneZaopiniowanie = pozytywneZaopiniowanie;
+    }
+
+    public ProwadzacyDto() {
+    }
+
+    public String getTytulNaukowy() {
+        return tytulNaukowy;
+    }
+
+    public void setTytulNaukowy(String tytulNaukowy) {
+        this.tytulNaukowy = tytulNaukowy;
+    }
+
+    public String getFormaZatrudnienia() {
+        return formaZatrudnienia;
+    }
+
+    public void setFormaZatrudnienia(String formaZatrudnienia) {
+        this.formaZatrudnienia = formaZatrudnienia;
+    }
+
+    public String getStanowisko() {
+        return stanowisko;
+    }
+
+    public void setStanowisko(String stanowisko) {
+        this.stanowisko = stanowisko;
+    }
+
+    public Boolean getZgodaNaPrzekroczeniePensum() {
+        return zgodaNaPrzekroczeniePensum;
+    }
+
+    public void setZgodaNaPrzekroczeniePensum(Boolean zgodaNaPrzekroczeniePensum) {
+        this.zgodaNaPrzekroczeniePensum = zgodaNaPrzekroczeniePensum;
+    }
+
+    public Boolean getPozytywneZaopiniowanie() {
+        return pozytywneZaopiniowanie;
+    }
+
+    public void setPozytywneZaopiniowanie(Boolean pozytywneZaopiniowanie) {
+        this.pozytywneZaopiniowanie = pozytywneZaopiniowanie;
     }
 
     public int getId() {

@@ -13,15 +13,15 @@ public class MainController {
     @GetMapping("/getStaff")
     public List<Pracownik> getAllStaff(){
         Pracownik pracownik = new Pracownik("Paulina", "Wątroba",
-                "paulina.watroba@pwr.edu.pl","Paulina.Wantroba", "Inż","Pracownik  zewnątrzny",
+                "paulina.watroba@pwr.edu.pl", "Inż","Pracownik  zewnątrzny",
                 "Pracownik  zewnątrzny", 240, true, true);
 
         Pracownik pracownik1 = new Pracownik("Mykhailo", "Stavniichuk",
-                "mykhailo.stavniichuk@pwr.edu.pl","Mykhailo.Stavniichuk", "Inż","Pracownik  zewnątrzny",
+                "mykhailo.stavniichuk@pwr.edu.pl", "Inż","Pracownik  zewnątrzny",
                 "Pracownik  zewnątrzny", 240, true, true);
 
         Pracownik pracownik2 = new Pracownik("Mateusz", "Klimiuk",
-                "mateusz.klimiuk@pwr.edu.pl","Mateusz.Klimiuk", "Inż","Pracownik  zewnątrzny",
+                "mateusz.klimiuk@pwr.edu.pl", "Inż","Pracownik  zewnątrzny",
                 "Pracownik  zewnątrzny", 240, true, true);
         return Arrays.asList(pracownik, pracownik1, pracownik2);
     }

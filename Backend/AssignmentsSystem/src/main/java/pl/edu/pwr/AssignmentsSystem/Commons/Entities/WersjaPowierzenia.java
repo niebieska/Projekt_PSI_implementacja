@@ -1,11 +1,17 @@
 package pl.edu.pwr.AssignmentsSystem.Commons.Entities;
 
 import com.sun.istack.NotNull;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class WersjaPowierzenia {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,14 +19,19 @@ public class WersjaPowierzenia {
     private int id;
     private int wersja;
     private int liczbaGodzin;
-    private int ZgodaProwadzacego;
-    private Timestamp dataUtworzenia;
-    private int prowadzacyId; // bez koniecznosci polaczenia
+    private boolean ZgodaProwadzacego;
+
+    @CreatedDate
+    private String dataUtworzenia;
+    private int koordynatorID; // bez koniecznosci polaczenia
 
     @ManyToOne
-    private Powierzenie powierzenie;
+    @JoinColumn(name ="kurs_id")
+    private Kurs kurs;
+
     @ManyToOne
-    private Uzytkownik uzytkownik;
+    @JoinColumn(name ="prowadzacy_id")
+    private Uzytkownik prowadzacy;
 
 
     public int getId() {
@@ -47,43 +58,43 @@ public class WersjaPowierzenia {
         this.liczbaGodzin = liczbaGodzin;
     }
 
-    public int getZgodaProwadzacego() {
+    public boolean isZgodaProwadzacego() {
         return ZgodaProwadzacego;
     }
 
-    public void setZgodaProwadzacego(int zgodaProwadzacego) {
+    public void setZgodaProwadzacego(boolean zgodaProwadzacego) {
         ZgodaProwadzacego = zgodaProwadzacego;
     }
 
-    public Timestamp getDataUtworzenia() {
+    public String getDataUtworzenia() {
         return dataUtworzenia;
     }
 
-    public void setDataUtworzenia(Timestamp dataUtworzenia) {
+    public void setDataUtworzenia(String dataUtworzenia) {
         this.dataUtworzenia = dataUtworzenia;
     }
 
-    public int getProwadzacyId() {
-        return prowadzacyId;
+    public int getKoordynatorID() {
+        return koordynatorID;
     }
 
-    public void setProwadzacyId(int prowadzacyId) {
-        this.prowadzacyId = prowadzacyId;
+    public void setKoordynatorID(int koordynatorID) {
+        this.koordynatorID = koordynatorID;
     }
 
-    public Powierzenie getPowierzenie() {
-        return powierzenie;
+    public Kurs getKurs() {
+        return kurs;
     }
 
-    public void setPowierzenie(Powierzenie powierzenie) {
-        this.powierzenie = powierzenie;
+    public void setKurs(Kurs kurs) {
+        this.kurs = kurs;
     }
 
-    public Uzytkownik getUzytkownik() {
-        return uzytkownik;
+    public Uzytkownik getProwadzacy() {
+        return prowadzacy;
     }
 
-    public void setUzytkownik(Uzytkownik uzytkownik) {
-        this.uzytkownik = uzytkownik;
+    public void setProwadzacy(Uzytkownik prowadzacy) {
+        this.prowadzacy = prowadzacy;
     }
 }

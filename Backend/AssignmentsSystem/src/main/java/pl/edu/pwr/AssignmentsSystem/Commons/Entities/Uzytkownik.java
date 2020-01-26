@@ -16,21 +16,17 @@ public class Uzytkownik {
     private String nazwisko;
     private String email;
     private String login;
-    private String rola;
     private String tytulNaukowy;
     private String formaZatrudnienia;
     private String stanowisko;
     private int pensum;
-    private int zgodaNaPrzekroczeniePensum;
-    private int pozytywnieZaopiniowany;
+    private boolean zgodaNaPrzekroczeniePensum;
+    private boolean pozytywnieZaopiniowany;
     private String rolaUzytkownika; //DType
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="uzytkownik")
     private List<PreferencjaProwadzacego> preferencjeProwadzacego;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="uzytkownik")
-    private List<WersjaPowierzenia> wersjaPowierzen;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="uzytkownik")
     private List<Powierzenie> powierzenia;
@@ -40,6 +36,10 @@ public class Uzytkownik {
 
     public Uzytkownik() {
         super();
+    }
+
+    public Uzytkownik(int id){
+        this.id = id;
     }
 
     public int getId() {
@@ -84,13 +84,6 @@ public class Uzytkownik {
         this.login = login;
     }
 
-    public String getRola() {
-        return rola;
-    }
-
-    public void setRola(String rola) {
-        this.rola = rola;
-    }
 
     public String getTytulNaukowy() {
         return tytulNaukowy;
@@ -124,19 +117,20 @@ public class Uzytkownik {
         this.pensum = pensum;
     }
 
-    public int getZgodaNaPrzekroczeniePensum() {
+
+    public boolean isZgodaNaPrzekroczeniePensum() {
         return zgodaNaPrzekroczeniePensum;
     }
 
-    public void setZgodaNaPrzekroczeniePensum(int zgodaNaPrzekroczeniePensum) {
+    public void setZgodaNaPrzekroczeniePensum(boolean zgodaNaPrzekroczeniePensum) {
         this.zgodaNaPrzekroczeniePensum = zgodaNaPrzekroczeniePensum;
     }
 
-    public int getPozytywnieZaopiniowany() {
+    public boolean isPozytywnieZaopiniowany() {
         return pozytywnieZaopiniowany;
     }
 
-    public void setPozytywnieZaopiniowany(int pozytywnieZaopiniowany) {
+    public void setPozytywnieZaopiniowany(boolean pozytywnieZaopiniowany) {
         this.pozytywnieZaopiniowany = pozytywnieZaopiniowany;
     }
 
@@ -155,14 +149,6 @@ public class Uzytkownik {
 
     public void setPreferencjeProwadzacego(List<PreferencjaProwadzacego> preferencjeProwadzacego) {
         this.preferencjeProwadzacego = preferencjeProwadzacego;
-    }
-
-    public List<WersjaPowierzenia> getWersjaPowierzen() {
-        return wersjaPowierzen;
-    }
-
-    public void setWersjaPowierzen(List<WersjaPowierzenia> wersjaPowierzen) {
-        this.wersjaPowierzen = wersjaPowierzen;
     }
 
     public List<Powierzenie> getPowierzenia() {

@@ -23,7 +23,7 @@ public class Kurs {
     }
 
     public Kurs(String formaZajec, int liczbaGodzin, String nazwa,
-            List<PreferencjaProwadzacego> preferencjeProwadzacego, Modul moduly, int liczbaGrup) {
+            List<PreferencjaProwadzacego> preferencjeProwadzacego, int liczbaGrup) {
         this.formaZajec = formaZajec;
         this.liczbaGodzin = liczbaGodzin;
         this.nazwa = nazwa;

@@ -36,17 +36,17 @@ public class KursMapper {
         planStudiow.setSpecjalnosc(planStudiowDto.getIdentyfikatorSemestru().getSpecjalnosc());
         planStudiow.setNumerSemestru(planStudiowDto.getIdentyfikatorSemestru().getNumerSemestru());
         planStudiow.setLiczbaStudentow(planStudiowDto.getLiczbaStudentow());
-        planStudiow.setModulList(planStudiowDto.getModulDto().stream().map(x -> KursMapper.toModul(x, planStudiow)).collect(Collectors.toList()));
+        planStudiow.setModulList(planStudiowDto.getModulDto().stream().map(KursMapper::toModul).collect(Collectors.toList()));
         return planStudiow;
     }
-    public static Kurs toKurs(KursDto kursDto, Modul modul) {
-        return new Kurs(kursDto.getFormaZajec(), kursDto.getLiczbaGodzin(), kursDto.getNazwa(), null,modul,0);
+    public static Kurs toKurs(KursDto kursDto) {
+        return new Kurs(kursDto.getFormaZajec(), kursDto.getLiczbaGodzin(), kursDto.getNazwa(), null,0);
     }
 
-    public static Modul  toModul(ModulDto modulDto, PlanStudiow planStudiow) {
+    public static Modul  toModul(ModulDto modulDto) {
         Modul modul = new Modul(modulDto.getLiczbaGodzin(), modulDto.getNazwa(), modulDto
-                .getOgolnouczelniany(), modulDto.getWybieralny(), null, planStudiow);
-        modul.setKursList( modulDto.getKursy().stream().map(x -> KursMapper.toKurs(x, modul)).collect(Collectors.toList()));
+                .getOgolnouczelniany(), modulDto.getWybieralny(), null);
+        modul.setKursList( modulDto.getKursy().stream().map(KursMapper::toKurs).collect(Collectors.toList()));
         return modul;
     }
 }

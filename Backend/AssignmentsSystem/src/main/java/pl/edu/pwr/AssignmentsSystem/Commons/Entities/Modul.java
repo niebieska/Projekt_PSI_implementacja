@@ -46,8 +46,7 @@ public class Modul {
         this.nazwa = nazwa;
     }
 
-    public Modul(int liczbaGodzin, String nazwa, boolean ogolnouczelniany, boolean wybieralny, List<Kurs> kursList,
-            PlanStudiow planStudiow) {
+    public Modul(int liczbaGodzin, String nazwa, boolean ogolnouczelniany, boolean wybieralny, List<Kurs> kursList) {
         this.liczbaGodzin = liczbaGodzin;
         this.nazwa = nazwa;
         this.ogolnouczelniany = ogolnouczelniany;

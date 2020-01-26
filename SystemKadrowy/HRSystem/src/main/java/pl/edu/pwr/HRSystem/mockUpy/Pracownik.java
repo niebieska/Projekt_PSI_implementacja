@@ -1,10 +1,10 @@
 package pl.edu.pwr.HRSystem.mockUpy;
 
 public class Pracownik {
+    int id;
     String imie;
     String nazwisko;
     String email;
-    String login;
     String tytulNaukowy;
     String formaZatrudnienia;
     String stanowisko;
@@ -12,17 +12,17 @@ public class Pracownik {
     Boolean zgodaNaPrzekroczeniePensum;
     Boolean pozytywneZaopiniowanie;
 
-    public Pracownik(String imie, String nazwisko, String email, String login, String tytulNaukowy, String formaZatrudnienia, String stanowisko, int pensum, Boolean zgodaNaPrzekroczeniePensum, Boolean pozytywneZaopiniowanie) {
+    public Pracownik(String imie, String nazwisko, String email, String tytulNaukowy, String formaZatrudnienia, String stanowisko, int pensum, Boolean zgodaNaPrzekroczeniePensum, Boolean pozytywneZaopiniowanie) {
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.email = email;
-                this.login = login;
         this.tytulNaukowy = tytulNaukowy;
         this.formaZatrudnienia = formaZatrudnienia;
         this.stanowisko =  stanowisko;
         this.pensum = pensum;
         this.zgodaNaPrzekroczeniePensum = zgodaNaPrzekroczeniePensum;
         this.pozytywneZaopiniowanie = pozytywneZaopiniowanie;
+        this.id = 0;
     }
 
     public String getImie() {
@@ -49,13 +49,6 @@ public class Pracownik {
         this.email = email;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
 
     public String getTytulNaukowy() {
         return tytulNaukowy;

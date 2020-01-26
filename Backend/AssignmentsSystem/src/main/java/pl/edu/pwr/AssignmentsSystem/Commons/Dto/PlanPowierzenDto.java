@@ -9,8 +9,10 @@ public class PlanPowierzenDto {
     String nazwa;
     IdentyfikatorSemestruDto identyfikatorSemestru;
     Boolean zatwierdzony;
+    Integer id;
 
-    public PlanPowierzenDto(List<PowierzenieDto> powierzenia, String nazwa, IdentyfikatorSemestruDto identyfikatorSemestru, Boolean zatwierdzony) {
+    public PlanPowierzenDto(Integer id, List<PowierzenieDto> powierzenia, String nazwa, IdentyfikatorSemestruDto identyfikatorSemestru, Boolean zatwierdzony) {
+        this.id = id;
         this.powierzenia = powierzenia;
         this.nazwa = nazwa;
         this.identyfikatorSemestru = identyfikatorSemestru;
@@ -47,5 +49,13 @@ public class PlanPowierzenDto {
 
     public void setZatwierdzony(Boolean zatwierdzony) {
         this.zatwierdzony = zatwierdzony;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

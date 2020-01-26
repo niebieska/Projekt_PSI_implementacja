@@ -9,6 +9,8 @@ import pl.edu.pwr.AssignmentsSystem.Commons.Dto.IdentyfikatorSemestruDto;
 import pl.edu.pwr.AssignmentsSystem.Commons.Dto.PlanStudiowDto;
 import pl.edu.pwr.AssignmentsSystem.Kursy.Usecase.PlanStudiowService;
 
+import java.util.List;
+
 @RestController
 public class KursController {
 
@@ -22,9 +24,16 @@ public class KursController {
     }
     @GetMapping("/importCoursesFromExternalSystem")
     public boolean importCourses(){
-        return planStudiowService.importKursFromExternalSystem();
+        return planStudiowService.importPlanStudiowFromExternalSystem();
     }
 
+    @GetMapping("/getAllIdentyfikatoryPlanuStudiow")
+    public List<IdentyfikatorSemestruDto> getAllIdentyfikatory()
+    {
+        return planStudiowService.extractIdentyfikatory();
+    }
+
+    // tak bedzie chyba autoryzacja
     @GetMapping("/hello")
     public ResponseEntity<String> hello() throws Exception {
         if(SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().noneMatch(x ->  x.getAuthority().equals("USER"))) {
