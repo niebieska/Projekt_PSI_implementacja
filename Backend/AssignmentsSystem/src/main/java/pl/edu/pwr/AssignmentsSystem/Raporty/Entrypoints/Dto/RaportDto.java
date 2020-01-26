@@ -1,7 +1,7 @@
 package pl.edu.pwr.AssignmentsSystem.Raporty.Entrypoints.Dto;
 
 
-import pl.edu.pwr.AssignmentsSystem.Powierzenia.Entrypoints.Dto.PlanPowierzenDto;
+import pl.edu.pwr.AssignmentsSystem.Commons.Dto.PlanPowierzenDto;
 
 
 import java.util.ArrayList;

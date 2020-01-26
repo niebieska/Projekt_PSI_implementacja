@@ -13,7 +13,7 @@ public class Powierzenie {
     @NonNull
     private int id;
     private int liczbaGodzin;
-    private int zgodaProwadzacego;
+    private boolean zgodaProwadzacego;
     private Timestamp dataUtworzenia;
     private int aktywny;
 
@@ -49,11 +49,11 @@ public class Powierzenie {
         this.liczbaGodzin = liczbaGodzin;
     }
 
-    public int getZgodaProwadzacego() {
+    public boolean isZgodaProwadzacego() {
         return zgodaProwadzacego;
     }
 
-    public void setZgodaProwadzacego(int zgodaProwadzacego) {
+    public void setZgodaProwadzacego(boolean zgodaProwadzacego) {
         this.zgodaProwadzacego = zgodaProwadzacego;
     }
 

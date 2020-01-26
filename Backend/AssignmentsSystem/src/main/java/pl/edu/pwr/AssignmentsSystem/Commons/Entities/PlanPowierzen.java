@@ -13,12 +13,10 @@ public class PlanPowierzen {
     @NotNull
     private int id;
 
-    private int zgodaKoordynatoraZapisow;
+    private boolean zgodaKoordynatoraZapisow;
     private String nazwa;
     private String wersjaPlanu;
     private Timestamp dataUtworzenia; // do weryfikacji
-    @ManyToOne
-    private PlanStudiow planStudiow;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="powierzenia")
     private List<Powierzenie> powierzenia;
@@ -34,11 +32,11 @@ public class PlanPowierzen {
         this.id = id;
     }
 
-    public int getZgodaKoordynatoraZapisow() {
+    public boolean isZgodaKoordynatoraZapisow() {
         return zgodaKoordynatoraZapisow;
     }
 
-    public void setZgodaKoordynatoraZapisow(int zgodaKoordynatoraZapisow) {
+    public void setZgodaKoordynatoraZapisow(boolean zgodaKoordynatoraZapisow) {
         this.zgodaKoordynatoraZapisow = zgodaKoordynatoraZapisow;
     }
 
@@ -64,14 +62,6 @@ public class PlanPowierzen {
 
     public void setDataUtworzenia(Timestamp dataUtworzenia) {
         this.dataUtworzenia = dataUtworzenia;
-    }
-
-    public PlanStudiow getPlanStudiow() {
-        return planStudiow;
-    }
-
-    public void setPlanStudiow(PlanStudiow planStudiow) {
-        this.planStudiow = planStudiow;
     }
 
     public List<Powierzenie> getPowierzenia() {

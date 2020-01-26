@@ -1,6 +1,4 @@
-package pl.edu.pwr.AssignmentsSystem.Powierzenia.Entrypoints.Dto;
-
-import pl.edu.pwr.AssignmentsSystem.Prowadzacy.Entrypoints.Dto.ProwadzacyDto;
+package pl.edu.pwr.AssignmentsSystem.Commons.Dto;
 
 import java.util.ArrayList;
 
