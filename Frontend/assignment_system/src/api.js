@@ -1,20 +1,5 @@
-export const getSubjects = async () => {
-  return [
-    {
-      id: 1,
-      name: 'Projektowanie systemów informatycznych\t',
-      totalHours: 1,
-      type: 'Wykład',
-      remainHours: 0,
-      mentor: 'Mykhailo Stavniichuk'
-    },
-    {
-      id: 2,
-      name: 'Projektowanie systemów informatycznych\t',
-      totalHours: 1,
-      type: 'Wykład',
-      remainHours: 0,
-      mentor: 'Mykhailo Stavniichuk'
-    }
-  ]
-}
+const axios = require('axios');
+//export const getSubjectData = () => axios('http://localhost:8080/getAllIdentyfikatoryPlanuStudiow');
+export const getSubjectData = () => import('./mock/getAllIdentyfikatoryPlanuStudiow').then(d => d.default);
+
+export const getOptions = () => import('./mock/options').then(d => d.default)

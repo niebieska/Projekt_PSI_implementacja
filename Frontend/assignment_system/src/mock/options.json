@@ -1,0 +1,21 @@
+{
+    "cyklKsztalcenia": [
+        "Zima 2019/2020",
+        "Lato 2019/2020",
+        "Zima 2020/2021",
+        "Lato 2020/2021"
+    ],
+    "kierunekStudiow": [
+        "Informatyka",
+        "Informatyka 1",
+        "Informatyka 2",
+        "Informatyka 3"
+    ],
+    "specjalnosc": [
+        "Inżynieria oprogramowania",
+        "Inżynieria oprogramowania 1",
+        "Inżynieria oprogramowania 2",
+        "Inżynieria oprogramowania 3"
+    ],
+    "numerSemestru": [1,2,3,4]
+}

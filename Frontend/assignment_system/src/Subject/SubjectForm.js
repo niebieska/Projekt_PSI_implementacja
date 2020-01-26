@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {Button, Col, Row, Form, Table, Modal, FormControl } from "react-bootstrap";
 import {Select} from "../Common/Select";
 import './Subject.css'
-import { getSubjects } from '../api'
+import { getOptions, getSubjectData } from '../api'
 
 export default function HomeForm() {
     const [kierunek, setKierunek] = useState(1);
@@ -14,11 +14,46 @@ export default function HomeForm() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const [subjects, setSubjects] = useState([]);
+    const [options, setOptions] = useState({
+        numerSemestru: [],
+        cyklKsztalcenia: [],
+        specjalnosc: [],
+        kierunekStudiow: []
+    });
+
+    const [kurses, setKurses] = useState([]);
 
     useEffect(() => {
-        getSubjects().then((subjects) => {
-            setSubjects(subjects)
+        getOptions().then(setOptions)
+    }, [])
+
+    useEffect(() => {
+        getSubjectData().then((response) => {
+            const {
+                identyfikatorSemestru: {
+                    cyklKsztalcenia,
+                    kierunekStudiow,
+                    specjalnosc,
+                    numerSemestru,
+                },
+                modulDto,
+            } = response
+
+            const kurses = modulDto.reduce((result, item) => result.concat(
+                item.kursy.map(kurs => ({
+                    id: kurs.id,
+                    nazwa: kurs.nazwa,
+                    liczbaGodzin: kurs.liczbaGodzin,
+                    formaZajec: kurs.formaZajec,
+                    liczbaGrup: kurs.liczbaGrup,
+                }))
+            ), [])
+
+            setRok(cyklKsztalcenia)
+            setKierunek(kierunekStudiow)
+            setSpecjalnosc(specjalnosc)
+            setSemestr(numerSemestru)
+            setKurses(kurses)
         })
     }, []);
 
@@ -62,19 +97,19 @@ export default function HomeForm() {
                     <Form.Group className="selects-row">
                         <div>
                             <Form.Label>Kierunek</Form.Label>
-                            <Select options={[1,2,3,4,5]} onChange={setKierunek} />
+                            <Select options={options.kierunekStudiow} onChange={setKierunek} value={kierunek} />
                         </div>
                         <div>
                             <Form.Label>Specjalność</Form.Label>
-                            <Select options={[1,2,3,4,5]} onChange={setSpecjalnosc} />
+                            <Select options={options.specjalnosc} onChange={setSpecjalnosc} value={specjalnosc} />
                         </div>
                         <div>
                             <Form.Label>Rok</Form.Label>
-                            <Select options={[1,2,3,4,5]} onChange={setRok} />
+                            <Select options={options.cyklKsztalcenia} onChange={setRok} value={rok} />
                         </div>
                         <div>
                             <Form.Label>Semestr</Form.Label>
-                            <Select options={[1,2,3,4,5]} onChange={setSemestr} />
+                            <Select options={options.numerSemestru} onChange={setSemestr} value={semestr} />
                         </div>
                     </Form.Group>
                 </Col>
@@ -92,16 +127,16 @@ export default function HomeForm() {
                     </tr>
                     </thead>
                     <tbody>
-                    {subjects.map((sub) => (
-                        <tr key={sub.id}>
-                            <td>{sub.id}</td>
-                            <td>{sub.name}</td>
-                            <td>{sub.totalHours}</td>
-                            <td>{sub.type}</td>
-                            <td>{sub.remainHours}</td>
+                    {kurses.map((kurs) => (
+                        <tr key={kurs.id}>
+                            <td>{kurs.id}</td>
+                            <td>{kurs.nazwa}</td>
+                            <td>{kurs.liczbaGodzin}</td>
+                            <td>{kurs.formaZajec}</td>
+                            <td>{kurs.liczbaGrup}</td>
                             <td>
                                 <td>
-                                    <p>{sub.mentor}</p>
+                                    <p>EMPTY</p>
                                 </td>
                                 <td> <Button className="round-button" onClick={handleShow}>+</Button></td>
                             </td>

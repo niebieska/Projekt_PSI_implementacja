@@ -1,0 +1,165 @@
+{
+  "liczbaStudentow": 250,
+  "identyfikatorSemestru": {
+    "cyklKsztalcenia": "Zima 2019/2020",
+    "kierunekStudiow": "Informatyka",
+    "specjalnosc": "Inżynieria oprogramowania",
+    "numerSemestru": 1
+  },
+  "modulDto": [
+    {
+      "id": 2,
+      "liczbaGodzin": 30,
+      "nazwa": "Praca dyplomowa I",
+      "ogolnouczelniany": false,
+      "wybieralny": false,
+      "kursy": [
+        {
+          "id": 3,
+          "formaZajec": "Projekt",
+          "liczbaGodzin": 30,
+          "liczbaGrup": 0,
+          "nazwa": "Praca dyplomowa I"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "liczbaGodzin": 45,
+      "nazwa": "Technologie wspierające wytwarzanie oprogramowania",
+      "ogolnouczelniany": false,
+      "wybieralny": false,
+      "kursy": [
+        {
+          "id": 5,
+          "formaZajec": "Laboratioria",
+          "liczbaGodzin": 30,
+          "liczbaGrup": 0,
+          "nazwa": "Technologie wspierające wytwarzanie oprogramowania"
+        },
+        {
+          "id": 6,
+          "formaZajec": "Wykład",
+          "liczbaGodzin": 15,
+          "liczbaGrup": 0,
+          "nazwa": "Technologie wspierające wytwarzanie oprogramowania"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "liczbaGodzin": 90,
+      "nazwa": "Bezpieczeństwo systemów webowych i mobilnych",
+      "ogolnouczelniany": false,
+      "wybieralny": false,
+      "kursy": [
+        {
+          "id": 8,
+          "formaZajec": "Laboratioria",
+          "liczbaGodzin": 30,
+          "liczbaGrup": 0,
+          "nazwa": "Bezpieczeństwo systemów webowych i mobilnych"
+        },
+        {
+          "id": 9,
+          "formaZajec": "Seminaria",
+          "liczbaGodzin": 30,
+          "liczbaGrup": 0,
+          "nazwa": "Bezpieczeństwo systemów webowych i mobilnych"
+        },
+        {
+          "id": 10,
+          "formaZajec": "Wykład",
+          "liczbaGodzin": 30,
+          "liczbaGrup": 0,
+          "nazwa": "Bezpieczeństwo systemów webowych i mobilnych"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "liczbaGodzin": 60,
+      "nazwa": "Przetwarzanie dużych zbiorów danych",
+      "ogolnouczelniany": false,
+      "wybieralny": false,
+      "kursy": [
+        {
+          "id": 12,
+          "formaZajec": "Projekt",
+          "liczbaGodzin": 30,
+          "liczbaGrup": 0,
+          "nazwa": "Przetwarzanie dużych zbiorów danych"
+        },
+        {
+          "id": 13,
+          "formaZajec": "Wykład",
+          "liczbaGodzin": 30,
+          "liczbaGrup": 0,
+          "nazwa": "Przetwarzanie dużych zbiorów danych"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "liczbaGodzin": 45,
+      "nazwa": "Inżynieria pozyskiwania i ochrony wiedzy z danych i baz danych",
+      "ogolnouczelniany": false,
+      "wybieralny": false,
+      "kursy": [
+        {
+          "id": 15,
+          "formaZajec": "Projekt",
+          "liczbaGodzin": 30,
+          "liczbaGrup": 0,
+          "nazwa": "Inżynieria pozyskiwania i ochrony wiedzy z danych i baz danych"
+        },
+        {
+          "id": 16,
+          "formaZajec": "Wykład",
+          "liczbaGodzin": 15,
+          "liczbaGrup": 0,
+          "nazwa": "Inżynieria pozyskiwania i ochrony wiedzy z danych i baz danych"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "liczbaGodzin": 45,
+      "nazwa": "Projektowanie systemów informatychnych",
+      "ogolnouczelniany": false,
+      "wybieralny": false,
+      "kursy": [
+        {
+          "id": 18,
+          "formaZajec": "Wykład",
+          "liczbaGodzin": 15,
+          "liczbaGrup": 0,
+          "nazwa": "Projektowanie systemów informatychnych"
+        },
+        {
+          "id": 19,
+          "formaZajec": "Projekt",
+          "liczbaGodzin": 30,
+          "liczbaGrup": 0,
+          "nazwa": "Projektowanie systemów informatychnych"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "liczbaGodzin": 30,
+      "nazwa": "Podstawy biznesu i ochrona własności intelektualnej",
+      "ogolnouczelniany": false,
+      "wybieralny": false,
+      "kursy": [
+        {
+          "id": 21,
+          "formaZajec": "Projekt",
+          "liczbaGodzin": 30,
+          "liczbaGrup": 0,
+          "nazwa": "Podstawy biznesu i ochrona własności intelektualnej"
+        }
+      ]
+    }
+  ]
+}
