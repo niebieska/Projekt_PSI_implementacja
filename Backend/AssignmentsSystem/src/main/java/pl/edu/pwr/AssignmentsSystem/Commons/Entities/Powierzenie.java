@@ -1,6 +1,7 @@
 package pl.edu.pwr.AssignmentsSystem.Commons.Entities;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.lang.NonNull;
@@ -11,9 +12,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
-@EnableTransactionManagement
-@EnableJpaRepositories
-@EnableJpaAuditing
+@EntityListeners(AuditingEntityListener.class)
 public class Powierzenie {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,7 +22,7 @@ public class Powierzenie {
     private boolean zgodaProwadzacego;
 
     @CreatedDate
-    private Timestamp dataUtworzenia;
+    private String dataUtworzenia;
     private boolean aktywny;
 
     @ManyToOne
@@ -63,11 +62,11 @@ public class Powierzenie {
         this.zgodaProwadzacego = zgodaProwadzacego;
     }
 
-    public Timestamp getDataUtworzenia() {
+    public String getDataUtworzenia() {
         return dataUtworzenia;
     }
 
-    public void setDataUtworzenia(Timestamp dataUtworzenia) {
+    public void setDataUtworzenia(String dataUtworzenia) {
         this.dataUtworzenia = dataUtworzenia;
     }
 

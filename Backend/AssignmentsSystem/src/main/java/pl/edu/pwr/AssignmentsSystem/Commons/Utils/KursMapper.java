@@ -40,7 +40,7 @@ public class KursMapper {
         return planStudiow;
     }
     public static Kurs toKurs(KursDto kursDto) {
-        return new Kurs(kursDto.getFormaZajec(), kursDto.getLiczbaGodzin(), kursDto.getNazwa(), null,0);
+        return new Kurs(kursDto.getId(), kursDto.getFormaZajec(), kursDto.getLiczbaGodzin(), kursDto.getNazwa(), null,0);
     }
 
     public static Modul  toModul(ModulDto modulDto) {

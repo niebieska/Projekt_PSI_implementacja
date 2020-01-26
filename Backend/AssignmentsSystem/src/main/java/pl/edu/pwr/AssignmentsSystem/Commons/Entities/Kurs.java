@@ -22,8 +22,9 @@ public class Kurs {
     public Kurs() {
     }
 
-    public Kurs(String formaZajec, int liczbaGodzin, String nazwa,
+    public Kurs(int id, String formaZajec, int liczbaGodzin, String nazwa,
             List<PreferencjaProwadzacego> preferencjeProwadzacego, int liczbaGrup) {
+        this.id = id;
         this.formaZajec = formaZajec;
         this.liczbaGodzin = liczbaGodzin;
         this.nazwa = nazwa;

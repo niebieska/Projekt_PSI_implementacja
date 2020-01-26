@@ -25,13 +25,13 @@ public class Uzytkownik {
     private String rolaUzytkownika; //DType
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="uzytkownik")
+    @JoinColumn(name="uzytkownik_id")
     private List<PreferencjaProwadzacego> preferencjeProwadzacego;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="uzytkownik")
+    @JoinColumn(name="uzytkownik_id")
     private List<Powierzenie> powierzenia;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="koordynator")
+    @JoinColumn(name="koordynator_id")
     private List<Powierzenie> zarrzadzanePowierzenia;
 
     public Uzytkownik() {

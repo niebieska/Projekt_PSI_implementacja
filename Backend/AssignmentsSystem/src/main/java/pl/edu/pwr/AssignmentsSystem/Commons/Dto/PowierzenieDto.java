@@ -17,6 +17,9 @@ public class PowierzenieDto {
     }
 
 
+    public PowierzenieDto() {
+    }
+
     public int getId() {
         return id;
     }

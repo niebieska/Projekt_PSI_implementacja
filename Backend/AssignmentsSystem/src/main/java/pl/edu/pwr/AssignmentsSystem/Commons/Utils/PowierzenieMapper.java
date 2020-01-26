@@ -19,6 +19,7 @@ public class PowierzenieMapper {
         pow.setKurs(KursMapper.toKurs(dto.getKurs()));
         pow.setUzytkownik(new Uzytkownik(dto.getProwadzacy().getId()));
         pow.setLiczbaGodzin(dto.getLiczbaGodzin());
+        pow.setId(dto.getId());
         return pow;
     }
     public static PlanPowierzenDto toDto(PlanPowierzen plan){

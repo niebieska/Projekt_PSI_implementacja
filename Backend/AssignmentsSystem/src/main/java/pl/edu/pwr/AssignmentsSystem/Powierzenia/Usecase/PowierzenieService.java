@@ -14,6 +14,7 @@ import pl.edu.pwr.AssignmentsSystem.Powierzenia.Respository.PowierzenieRepositor
 import pl.edu.pwr.AssignmentsSystem.Powierzenia.Respository.WersjaPowtorzenieRepository;
 import pl.edu.pwr.AssignmentsSystem.Prowadzacy.Usecase.ProwadzacyService;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -67,7 +68,7 @@ public class PowierzenieService {
                     wersja.setZgodaProwadzacego(toSave.isZgodaProwadzacego());
                     wersja.setKurs(toSave.getKurs());
                     wersja.setProwadzacy(toSave.getUzytkownik());
-                    wersja.setWersja(toSave.getWersjePowierzen().stream().map(WersjaPowierzenia::getWersja).max(Comparator.comparing(Integer::valueOf)).orElse(0));
+                    wersja.setWersja(toSave.getWersjePowierzen().stream().map(WersjaPowierzenia::getWersja).max(Comparator.comparing(Integer::valueOf)).orElse(-1) + 1);
                     toSave.getWersjePowierzen().add(wersja);
                     planPowierzen.getPowierzenia().add(toSave);
                     //TODO jeszcze koordynator
@@ -84,12 +85,14 @@ public class PowierzenieService {
                     entity.setUzytkownik(uzytkownik.get());
                     entity.setKurs(kurs.get());
                     entity.setLiczbaGodzin(powierzenie.getLiczbaGodzin());
+                    entity.setAktywny(true);
                     WersjaPowierzenia wersja = new WersjaPowierzenia();
                     wersja.setLiczbaGodzin(entity.getLiczbaGodzin());
                     wersja.setZgodaProwadzacego(entity.isZgodaProwadzacego());
                     wersja.setKurs(entity.getKurs());
                     wersja.setProwadzacy(entity.getUzytkownik());
                     wersja.setWersja(0);
+                    entity.setWersjePowierzen(new ArrayList<>());
                     entity.getWersjePowierzen().add(wersja);
                     planPowierzen.getPowierzenia().add(entity);
                     //TODO jeszcze koordynator

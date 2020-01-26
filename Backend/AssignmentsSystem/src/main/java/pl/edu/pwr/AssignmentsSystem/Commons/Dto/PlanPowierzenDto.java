@@ -11,6 +11,9 @@ public class PlanPowierzenDto {
     Boolean zatwierdzony;
     Integer id;
 
+    public PlanPowierzenDto() {
+    }
+
     public PlanPowierzenDto(Integer id, List<PowierzenieDto> powierzenia, String nazwa, IdentyfikatorSemestruDto identyfikatorSemestru, Boolean zatwierdzony) {
         this.id = id;
         this.powierzenia = powierzenia;
