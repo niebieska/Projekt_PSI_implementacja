@@ -19,8 +19,7 @@ public class PlanStudiow {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="planStudiow")
     private List<Modul> modulList;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="planPowierzen")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "planStudiow")
     private List<PlanPowierzen> planPowierzenList;
 
     public PlanStudiow() {

@@ -24,11 +24,23 @@ public class PlanPowierzen {
     private String wersjaPlanu;
     @CreatedDate
     private String dataUtworzenia; // do weryfikacji
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="powierzenia")
+
+    @ManyToOne
+    @JoinColumn(name="planStudiow_id")
+    private PlanStudiow planStudiow;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "planPowierzen")
     private List<Powierzenie> powierzenia;
 
     public PlanPowierzen() {
+    }
+
+    public PlanStudiow getPlanStudiow() {
+        return planStudiow;
+    }
+
+    public void setPlanStudiow(PlanStudiow planStudiow) {
+        this.planStudiow = planStudiow;
     }
 
     public int getId() {

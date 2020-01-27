@@ -1,17 +1,17 @@
 package pl.edu.pwr.AssignmentsSystem.Commons.Dto;
 
 public class ProwadzacyDto {
-    int id;
-    String imie;
-    String nazwisko;
-    String email;
-    int pensum;
-    int pozostaloPensum;
-    String tytulNaukowy;
-    String formaZatrudnienia;
-    String stanowisko;
-    Boolean zgodaNaPrzekroczeniePensum;
-    Boolean pozytywneZaopiniowanie;
+    private int id;
+    private String imie;
+    private String nazwisko;
+    private String email;
+    private int pensum;
+    private int pozostaloPensum;
+    private String tytulNaukowy;
+    private String formaZatrudnienia;
+    private String stanowisko;
+    private Boolean zgodaNaPrzekroczeniePensum;
+    private Boolean pozytywneZaopiniowanie;
 
 
     public ProwadzacyDto(int id, String imie, String nazwisko, String email, int pensum, int pozostaloPensum) {
