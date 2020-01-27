@@ -18,7 +18,7 @@ public class MainController {
 
         Pracownik pracownik1 = new Pracownik("Mykhailo", "Stavniichuk",
                 "mykhailo.stavniichuk@pwr.edu.pl", "Inż","Pracownik  zewnątrzny",
-                "Pracownik  zewnątrzny", 240, true, true);
+                "lektor", 240, true, true);
 
         Pracownik pracownik2 = new Pracownik("Mateusz", "Klimiuk",
                 "mateusz.klimiuk@pwr.edu.pl", "Inż","Pracownik  zewnątrzny",
