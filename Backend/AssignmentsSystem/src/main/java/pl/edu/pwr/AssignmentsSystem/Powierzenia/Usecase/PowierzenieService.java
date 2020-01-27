@@ -3,7 +3,6 @@ package pl.edu.pwr.AssignmentsSystem.Powierzenia.Usecase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.edu.pwr.AssignmentsSystem.Commons.Dto.IdentyfikatorSemestruDto;
-import pl.edu.pwr.AssignmentsSystem.Commons.Dto.PlanStudiowDto;
 import pl.edu.pwr.AssignmentsSystem.Commons.Dto.PowierzenieDto;
 import pl.edu.pwr.AssignmentsSystem.Commons.Entities.*;
 import pl.edu.pwr.AssignmentsSystem.Commons.Utils.PowierzenieMapper;
@@ -12,6 +11,7 @@ import pl.edu.pwr.AssignmentsSystem.Commons.Dto.PlanPowierzenDto;
 import pl.edu.pwr.AssignmentsSystem.Powierzenia.Respository.PlanPowierzenRepository;
 import pl.edu.pwr.AssignmentsSystem.Powierzenia.Respository.PowierzenieRepository;
 import pl.edu.pwr.AssignmentsSystem.Powierzenia.Respository.WersjaPowtorzenieRepository;
+import pl.edu.pwr.AssignmentsSystem.Commons.Utils.Stanowiska;
 import pl.edu.pwr.AssignmentsSystem.Prowadzacy.Usecase.ProwadzacyService;
 
 import java.util.ArrayList;
@@ -56,8 +56,12 @@ public class PowierzenieService {
                 Optional<Uzytkownik> uzytkownik = prowadzacyService
                         .getUzytkownikByID(powierzenie.getUzytkownik().getId());
                 Optional<Kurs> kurs = planStudiowService.getKursByID(powierzenie.getKurs().getId());
+
                 if (uzytkownik.isPresent() && kurs.isPresent() && entity.isPresent() && powierzenie
                         .getLiczbaGodzin() >= 0) {
+                    if(kurs.get().getFormaZajec().equals("wykład") || kurs.get().getFormaZajec().equals("seminarium")  &&  Stanowiska.nieuprawnieni.contains(uzytkownik.get().getStanowisko())){
+                        return  false;
+                    }
                     Powierzenie toSave = entity.get();
                     toSave.setAktywny(true);
                     toSave.setUzytkownik(uzytkownik.get());
