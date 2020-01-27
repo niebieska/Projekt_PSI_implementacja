@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Button, Col, Row, Form, Table, Modal, FormControl } from "react-bootstrap";
-import {Select} from "../Common/Select";
+import {Select} from "../Common/Components/Select";
 import './Subject.css'
 import { getOptions, getSubjectData } from '../api'
 
