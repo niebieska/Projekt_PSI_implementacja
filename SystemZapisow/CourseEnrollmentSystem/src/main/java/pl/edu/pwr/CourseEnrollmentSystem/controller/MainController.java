@@ -16,10 +16,10 @@ public class MainController {
     @GetMapping("/getSchedule")
     public List<PlanStudiowDto> getSchedule() {
         KursDto Pd1 = new KursDto(0, "Projekt", 30, 0, "Praca dyplomowa I");
-        KursDto Twwo1 = new KursDto(0, "Laboratioria", 30, 0, "Technologie wspierające wytwarzanie oprogramowania");
+        KursDto Twwo1 = new KursDto(0, "Laboratorium", 30, 0, "Technologie wspierające wytwarzanie oprogramowania");
         KursDto Twwo2 = new KursDto(0, "Wykład", 15, 0, "Technologie wspierające wytwarzanie oprogramowania");
-        KursDto Bswm1 = new KursDto(0, "Laboratioria", 30, 0, "Bezpieczeństwo systemów webowych i mobilnych");
-        KursDto Bswm2 = new KursDto(0, "Seminaria", 30, 0, "Bezpieczeństwo systemów webowych i mobilnych");
+        KursDto Bswm1 = new KursDto(0, "Laboratorium", 30, 0, "Bezpieczeństwo systemów webowych i mobilnych");
+        KursDto Bswm2 = new KursDto(0, "Seminarium", 30, 0, "Bezpieczeństwo systemów webowych i mobilnych");
         KursDto Bswm3 = new KursDto(0, "Wykład", 30, 0, "Bezpieczeństwo systemów webowych i mobilnych");
         KursDto Pdzd1 = new KursDto(0, "Projekt", 30, 0, "Przetwarzanie dużych zbiorów danych");
         KursDto Pdzd2 = new KursDto(0, "Wykład", 30, 0, "Przetwarzanie dużych zbiorów danych");

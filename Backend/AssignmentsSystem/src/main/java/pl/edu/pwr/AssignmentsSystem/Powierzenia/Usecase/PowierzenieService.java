@@ -45,6 +45,7 @@ public class PowierzenieService {
     }
 
     public boolean savePowierzenie(PlanPowierzenDto planPowierzenDto) {
+
         PlanPowierzen planPowierzen = planPowierzenRepository.findById(planPowierzenDto.getId()).orElse(null);
         if(planPowierzen == null)
         {
@@ -86,6 +87,9 @@ public class PowierzenieService {
                 Optional<Kurs> kurs = planStudiowService.getKursByID(powierzenie.getKurs().getId());
                 if (uzytkownik.isPresent() && kurs.isPresent() && powierzenie
                         .getLiczbaGodzin() >= 0) {
+                    if(kurs.get().getFormaZajec().equals("Wykład") || kurs.get().getFormaZajec().equals("Seminarium")  &&  Stanowiska.nieuprawnieni.contains(uzytkownik.get().getStanowisko())){
+                        return  false;
+                    }
                     entity.setUzytkownik(uzytkownik.get());
                     entity.setKurs(kurs.get());
                     entity.setLiczbaGodzin(powierzenie.getLiczbaGodzin());
