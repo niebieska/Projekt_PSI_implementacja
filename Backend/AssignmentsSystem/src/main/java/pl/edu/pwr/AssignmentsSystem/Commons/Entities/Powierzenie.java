@@ -30,12 +30,24 @@ public class Powierzenie {
     @ManyToOne
     private Kurs kurs;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="powierzenie")
+    @JoinColumn(name="wersjaPowierzenia")
     private List<WersjaPowierzenia> wersjePowierzen;
     @ManyToOne
     private Uzytkownik koordynator;
 
+    @ManyToOne
+    @JoinColumn
+    private PlanPowierzen planPowierzen;
+
     public Powierzenie() {
+    }
+
+    public PlanPowierzen getPlanPowierzen() {
+        return planPowierzen;
+    }
+
+    public void setPlanPowierzen(PlanPowierzen planPowierzen) {
+        this.planPowierzen = planPowierzen;
     }
 
     public int getId() {
