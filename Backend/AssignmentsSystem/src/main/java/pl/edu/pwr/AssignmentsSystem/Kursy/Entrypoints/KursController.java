@@ -11,6 +11,7 @@ import pl.edu.pwr.AssignmentsSystem.Kursy.Usecase.PlanStudiowService;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class KursController {
 

@@ -16,17 +16,22 @@ class HomeForm extends Component{
             wybKierunek : null,
             wybRok : null,
             wybSpecjalnosc : null,
-            wybSemestr : null
+            wybSemestr : null,
+            kurses : [],
+            show : false,
         }
         this.handleChangeRok = this.handleChangeRok.bind(this);
         this.handleChangeKierunek = this.handleChangeKierunek.bind(this);
         this.handleChangeSpecjalnosc = this.handleChangeSpecjalnosc.bind(this);
         this.handleChangeSemestr = this.handleChangeSemestr.bind(this);
+        this.loadData = this.loadData.bind(this);
+        this.handleClose = this.handleClose.bind(this)
+        this.handleShow = this.handleShow.bind(this)
     }
     typ = "Nowe przedzielenie";
     show = false;
-    handleClose = () => this.show = false;
-    handleShow = () => this.show = true;
+    handleClose = () => this.setState({show : false});
+    handleShow = () =>  this.setState({show : true});
     allInformation = [];
     kurses = [];
 
@@ -84,25 +89,27 @@ class HomeForm extends Component{
             let sem = this.getAllSemester(this.allInformation, this.getIfUndefine(this.state.wybRok, temp_value.rok), this.getIfUndefine(this.state.wybKierunek, temp_value.kierunek), value)
             this.setState({wybSpecjalnosc: value})
             this.setState({numerSemestru: [...new Set(sem)]})
+            temp = [...new Set(sem)].length;
+            temp_value.semestr = [...new Set(sem)][0];
+        }
+        if(temp === 1)
+        {
+            temp = 0;
+            option = 'semestr'
+            value = temp_value.semestr;
+        }
+        if(option === 'semestr') {
+            this.setState({wybSemestr: value})
         }
     }
 
-    getIfUndefine(obj1, obj2) {
-        return obj1 || obj2;
-    }
-
-    componentDidMount() {
-        this.allInformation = getOptions;
-
-        let choosenRok = this.getAllCyklKsztalcenia(this.allInformation);
-
-
-        this.setState({rok : [...new Set(choosenRok)]})
-
-        this.calculateOptions('rok', choosenRok[0]);
-
-        //this.setState({kierunek: this.getAllKierunek(this.allInformation, choosenRok[0])})
-        getSubjectData().then((response) => {
+    loadData(){
+        getSubjectData({
+            "cyklKsztalcenia": this.state.wybRok,
+            "kierunekStudiow": this.state.wybKierunek,
+            "specjalnosc": this.state.wybSpecjalnosc,
+            "numerSemestru": this.state.wybSemestr
+        }).then((response) => {
             const {
                 identyfikatorSemestru: {
                     cyklKsztalcenia,
@@ -111,24 +118,37 @@ class HomeForm extends Component{
                     numerSemestru,
                 },
                 modulDto,
-            } = response
+            } = response.data
 
-            this.kurses = modulDto.reduce((result, item) => result.concat(
-                item.kursy.map(kurs => ({
-                    id: kurs.id,
-                    nazwa: kurs.nazwa,
-                    liczbaGodzin: kurs.liczbaGodzin,
-                    formaZajec: kurs.formaZajec,
-                    liczbaGrup: kurs.liczbaGrup,
-                }))
-            ), [])
+            this.setState({kurses:  modulDto.reduce((result, item) => result.concat(
+                    item.kursy.map(kurs => ({
+                        id: kurs.id,
+                        nazwa: kurs.nazwa,
+                        liczbaGodzin: kurs.liczbaGodzin,
+                        formaZajec: kurs.formaZajec,
+                        liczbaGrup: kurs.liczbaGrup,
+                    }))
+                ), [])})
 
-            /*this.rok = cyklKsztalcenia;
-            setKierunek(kierunekStudiow)
-            setSpecjalnosc(specjalnosc)
-            setSemestr(numerSemestru)
-            setKurses(kurses)*/
-        })
+        });
+    }
+
+    getIfUndefine(obj1, obj2) {
+        return obj1 || obj2;
+    }
+
+    componentDidMount() {
+        getOptions().then(res => {
+            this.allInformation = res.data;
+            let choosenRok = this.getAllCyklKsztalcenia(this.allInformation);
+
+
+            this.setState({rok : [...new Set(choosenRok)]})
+
+            this.calculateOptions('rok', choosenRok[0]);
+        });
+
+
     };
 
     getAllCyklKsztalcenia = (obj) => {
@@ -200,8 +220,15 @@ class HomeForm extends Component{
                             <Form.Label>Semestr</Form.Label>
                             <Select options={this.state.numerSemestru} onChange={this.handleChangeSemestr}/>
                         </div>
+
                     </Form.Group>
                 </Col>
+                <Col>
+                    <div>
+                        <Button onClick={this.loadData}>Submit</Button>
+                    </div>
+                </Col>>
+
             </Row>
             <Row>
                 <Table striped bordered hover>
@@ -216,7 +243,7 @@ class HomeForm extends Component{
                     </tr>
                     </thead>
                     <tbody>
-                    {this.kurses.map((kurs) => (
+                    {this.state.kurses.map((kurs) => (
                         <tr key={kurs.id}>
                             <td>{kurs.id}</td>
                             <td>{kurs.nazwa}</td>
@@ -272,7 +299,7 @@ class HomeForm extends Component{
             </Row>
 
 
-            <Modal show={this.show} onHide={this.handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+            <Modal show={this.state.show} onHide={this.handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Lista dostępnych prowadzących</Modal.Title>
                 </Modal.Header>
