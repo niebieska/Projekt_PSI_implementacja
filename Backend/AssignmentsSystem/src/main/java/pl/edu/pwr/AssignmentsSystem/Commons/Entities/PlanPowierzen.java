@@ -25,7 +25,7 @@ public class PlanPowierzen {
     @CreatedDate
     private String dataUtworzenia; // do weryfikacji
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="planStudiow_id")
     private PlanStudiow planStudiow;
 

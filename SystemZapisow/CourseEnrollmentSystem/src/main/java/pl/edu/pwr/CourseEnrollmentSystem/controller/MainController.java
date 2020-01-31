@@ -83,6 +83,8 @@ public class MainController {
 
         plans.add(new PlanStudiowDto(250, new IdentyfikatorSemestruDto("Zima 2019/2020", "Informatyka", "Inżynieria " +
                 "oprogramowania", 1), moduls));
+        plans.add(new PlanStudiowDto(150, new IdentyfikatorSemestruDto("Lato 2019/2020", "Informatyka", "Inżynieria " +
+                "oprogramowania", 3), moduls));
         return plans;
     }
 }

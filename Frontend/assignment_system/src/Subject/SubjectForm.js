@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {Button, Col, Row, Form, Table, Modal, FormControl } from "react-bootstrap";
 import {Select} from "../Common/Components/Select";
 import './Subject.css'
-import { getOptions, getSubjectData } from '../api'
+import {getOptions, getSubjectData, getEntrustPlan, saveEntrustPlan, getStaff, saveEntrust} from '../api'
+
 
 class HomeForm extends Component{
 
@@ -18,7 +19,14 @@ class HomeForm extends Component{
             wybSpecjalnosc : null,
             wybSemestr : null,
             kurses : [],
+            mergedKurses: [],
             show : false,
+            entrustPlans :[],
+            selectedPlan :{},
+            name: '',
+            prowadzacy: [],
+            updatedProwadzacy: [],
+            selectedKurs: {},
         }
         this.handleChangeRok = this.handleChangeRok.bind(this);
         this.handleChangeKierunek = this.handleChangeKierunek.bind(this);
@@ -27,16 +35,117 @@ class HomeForm extends Component{
         this.loadData = this.loadData.bind(this);
         this.handleClose = this.handleClose.bind(this)
         this.handleShow = this.handleShow.bind(this)
+        this.handleChangeEntrustPlan = this.handleChangeEntrustPlan.bind(this)
+        this.handleCreateNewPlan = this.handleCreateNewPlan.bind(this)
+        this.handleNumberOfHours = this.handleNumberOfHours.bind(this)
     }
+
     typ = "Nowe przedzielenie";
     show = false;
-    handleClose = () => this.setState({show : false});
-    handleShow = () =>  this.setState({show : true});
+    toUpdate = [];
+    handleClose = (save) => {
+        this.setState({show: false});
+        if (save) {
+            this.toUpdate.map((obj) => {
+                let powierzenieId = this.state.selectedPlan.powierzenia.find(x => x.prowadzacy.id === obj.id && x.kurs.id === this.state.selectedKurs.id);
+                if(powierzenieId != undefined)
+                {
+                    powierzenieId = powierzenieId.id;
+                }else{
+                    powierzenieId = 0;
+                }
+                    let plan = {
+                        "powierzenia": [
+                            {
+                                "id" : powierzenieId,
+                                "prowadzacy": {
+                                    "id": obj.id
+                                },
+                                "kurs": {
+                                    "id": this.state.selectedKurs.id
+                                },
+                                "liczbaGodzin":obj.value,
+                            }],
+                        "nazwa": this.state.selectedPlan.nazwa,
+                        "identyfikatorSemestru": {
+                            "cyklKsztalcenia": this.state.wybRok,
+                            "kierunekStudiow": this.state.wybKierunek,
+                            "specjalnosc": this.state.wybSpecjalnosc,
+                            "numerSemestru": this.state.wybSemestr
+                        },
+                        "id" : this.state.selectedPlan.id
+                }
+                saveEntrust(plan).then((response) => {
+                    if(response.status === 201)
+                    {
+                        getEntrustPlan({
+                            "cyklKsztalcenia": this.state.wybRok,
+                            "kierunekStudiow": this.state.wybKierunek,
+                            "specjalnosc": this.state.wybSpecjalnosc,
+                            "numerSemestru": this.state.wybSemestr
+                        }).then((response) => {
+                            this.setState({entrustPlans : response.data})
+                            this.state.selectedPlan = response.data.find(x => x.nazwa === this.state.selectedPlan.nazwa);
+                            this.mergeBothPlans();
+                        })
+                    }
+                })
+            })
+        }
+        this.toUpdate = [];
+    }
+
+    handleShow = (kurs) =>  {
+        this.setState({show : true});
+        this.setState({selectedKurs: kurs});
+    }
     allInformation = [];
     kurses = [];
 
     handleChangeRok(event) {
         this.calculateOptions('rok', event)
+    }
+
+    handleNumberOfHours(event, id) {
+        this.toUpdate[id] = {
+            "id": id,
+            "value" : event
+        };
+        if(event === undefined || event === '')
+        {
+            this.toUpdate[id] = {};
+        }
+    }
+
+    handleCreateNewPlan(){
+        saveEntrustPlan({
+            "powierzenia": [],
+            "nazwa": this.state.name,
+            "identyfikatorSemestru": {
+                "cyklKsztalcenia": this.state.wybRok,
+                "kierunekStudiow": this.state.wybKierunek,
+                "specjalnosc": this.state.wybSpecjalnosc,
+                "numerSemestru": this.state.wybSemestr
+            },
+            "zatwierdzony": false,
+            "id": 0
+        }).then(() => {
+            getEntrustPlan({
+                "cyklKsztalcenia": this.state.wybRok,
+                "kierunekStudiow": this.state.wybKierunek,
+                "specjalnosc": this.state.wybSpecjalnosc,
+                "numerSemestru": this.state.wybSemestr
+            }).then((response) => {
+                this.setState({entrustPlans : response.data})
+            })
+
+        })
+    }
+    handleChangeEntrustPlan(event){
+        let plan = this.state.entrustPlans.find(x => x.nazwa === event);
+        this.setState({selectedPlan : plan});
+        this.state.selectedPlan = plan;
+        this.mergeBothPlans();
     }
     handleChangeKierunek(event) {
         this.calculateOptions('kierunek', event)
@@ -46,6 +155,23 @@ class HomeForm extends Component{
     }
     handleChangeSemestr(event) {
         this.calculateOptions('semestr', event)
+    }
+
+    mergeBothPlans() {
+        this.state.mergedKurses = JSON.parse(JSON.stringify(this.state.kurses));
+        this.state.updatedProwadzacy = JSON.parse(JSON.stringify(this.state.prowadzacy));
+        for (let i = 0; i < this.state.kurses.length; i++) {
+            for (let j = 0; j < this.state.selectedPlan.powierzenia.length; j++) {
+                if (this.state.kurses[i].nazwa === this.state.selectedPlan.powierzenia[j].kurs.nazwa && this.state.kurses[i].formaZajec === this.state.selectedPlan.powierzenia[j].kurs.formaZajec) {
+                    this.state.mergedKurses[i].liczbaGrup -= this.state.selectedPlan.powierzenia[j].liczbaGodzin
+                    let prow = this.state.selectedPlan.powierzenia[j].prowadzacy
+                    prow.occupiedTime = this.state.selectedPlan.powierzenia[j].liczbaGodzin;
+                    this.state.mergedKurses[i].prowadzacy.push(prow)
+                    this.state.updatedProwadzacy.find(x => x.email === prow.email).pozostaloPensum -= this.state.selectedPlan.powierzenia[j].liczbaGodzin;
+                }
+            }
+        }
+        this.setState({mergedKurses : this.state.mergedKurses});
     }
 
     calculateOptions(option, value){
@@ -65,6 +191,7 @@ class HomeForm extends Component{
             this.setState({numerSemestru: []})
             this.state.wybKierunek = '';
             this.state.wybSpecjalnosc = '';
+			this.state.wybSemestr = '';
         }
 
         if(temp === 1)
@@ -78,6 +205,10 @@ class HomeForm extends Component{
             temp = [...new Set(temp_value.specjalnosc)].length;
             this.setState({wybKierunek: value})
             this.setState({specjalnosc: [...new Set(temp_value.specjalnosc)] })
+            this.setState({wybSpecjalnosc: ''})
+            this.setState({numerSemestru: []})
+            this.state.wybSpecjalnosc = '';
+			this.state.wybSemestr = '';
         }
         if(temp === 1)
         {
@@ -91,6 +222,7 @@ class HomeForm extends Component{
             this.setState({numerSemestru: [...new Set(sem)]})
             temp = [...new Set(sem)].length;
             temp_value.semestr = [...new Set(sem)][0];
+			this.state.wybSemestr = '';
         }
         if(temp === 1)
         {
@@ -126,9 +258,22 @@ class HomeForm extends Component{
                         nazwa: kurs.nazwa,
                         liczbaGodzin: kurs.liczbaGodzin,
                         formaZajec: kurs.formaZajec,
-                        liczbaGrup: kurs.liczbaGrup,
+                        liczbaGrup: kurs.liczbaGodzin,
+                        prowadzacy : [],
                     }))
                 ), [])})
+
+            getEntrustPlan({
+                "cyklKsztalcenia": this.state.wybRok,
+                "kierunekStudiow": this.state.wybKierunek,
+                "specjalnosc": this.state.wybSpecjalnosc,
+                "numerSemestru": this.state.wybSemestr
+            }).then((response) => {
+                this.setState({entrustPlans : response.data})
+                this.state.selectedPlan = response.data[0]
+                this.setState({selectedPlan:response.data[0]})
+                this.mergeBothPlans()
+            })
 
         });
     }
@@ -147,7 +292,9 @@ class HomeForm extends Component{
 
             this.calculateOptions('rok', choosenRok[0]);
         });
-
+        getStaff().then((response) => {
+            this.setState({prowadzacy : response.data})
+        })
 
     };
 
@@ -190,7 +337,7 @@ class HomeForm extends Component{
                 <Col md={3}>
                     <Form.Group>
                         <div>
-                            <Select options={["Nowe przedzielenie", "Plan studiów wersja 1"]} onChange={x => 2}/>
+                            <Select options={this.state.entrustPlans.map(x => x.nazwa)} onChange={this.handleChangeEntrustPlan}/>
                         </div>
                     </Form.Group>
                 </Col>
@@ -198,8 +345,13 @@ class HomeForm extends Component{
                     Nazwa planu powierzeń
                 </Col>
                 <Col md={5}>
-                    <Form.Control/>
+                    <Form.Control as="input" ref={this.state.name} onChange={(ev) => this.setState({"name":ev.target.value})}/>
                 </Col>
+                <Col>
+                    <div>
+                        <Button onClick={this.handleCreateNewPlan}>Create new plan</Button>
+                    </div>
+                </Col>>
             </Row>
             <Row>
                 <Col md={10}>
@@ -220,15 +372,11 @@ class HomeForm extends Component{
                             <Form.Label>Semestr</Form.Label>
                             <Select options={this.state.numerSemestru} onChange={this.handleChangeSemestr}/>
                         </div>
-
+                            <div>
+                                <Button onClick={this.loadData} style={{"margin-top": "30px"}}>Submit</Button>
+                            </div>
                     </Form.Group>
                 </Col>
-                <Col>
-                    <div>
-                        <Button onClick={this.loadData}>Submit</Button>
-                    </div>
-                </Col>>
-
             </Row>
             <Row>
                 <Table striped bordered hover>
@@ -243,7 +391,7 @@ class HomeForm extends Component{
                     </tr>
                     </thead>
                     <tbody>
-                    {this.state.kurses.map((kurs) => (
+                    {this.state.mergedKurses.map((kurs) => (
                         <tr key={kurs.id}>
                             <td>{kurs.id}</td>
                             <td>{kurs.nazwa}</td>
@@ -251,10 +399,10 @@ class HomeForm extends Component{
                             <td>{kurs.formaZajec}</td>
                             <td>{kurs.liczbaGrup}</td>
                             <td>
-                                <td>
-                                    <p>EMPTY</p>
-                                </td>
-                                <td><Button className="round-button" onClick={this.handleShow}>+</Button></td>
+                                {kurs.prowadzacy.map((prow, index) => (
+                                    <tr key={index}> {prow.imie + " " + prow.nazwisko + "(" + prow.occupiedTime + ")"} </tr>
+                                ))}
+                                <td><Button className="round-button" onClick={() => this.handleShow(kurs)}>+</Button></td>
                             </td>
                         </tr>
                     ))}
@@ -340,18 +488,20 @@ class HomeForm extends Component{
                                 <tr>
                                     <th>#</th>
                                     <th>Prowadzący</th>
-                                    <th>Pozostawy pensum do przedzielenia</th>
+                                    <th>Pozostałe pensum do przedzielenia</th>
                                     <th>Proponowana liczba godzin</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Mykhailo Stavniichuk</td>
-                                    <td>150</td>
-                                    <td><FormControl type="text" className="mr-sm-2"/></td>
-                                </tr>
+                                { this.state.updatedProwadzacy.map((prow) => (
+                                    <tr>
+                                        <td>{prow.id}</td>
+                                        <td>{prow.imie + " " + prow.nazwisko}</td>
+                                        <td>{prow.pozostaloPensum}</td>
+                                        <td><FormControl defaultValue={this.state.selectedPlan.powierzenia.filter(x => x.prowadzacy.id === prow.id && x.kurs.id === this.state.selectedKurs.id).map(x => x.liczbaGodzin).reduce( (x, y) => x + y, 0)} type="text" className="mr-sm-2" onChange={(eve) => this.handleNumberOfHours(eve.target.value, prow.id)}/></td>
+                                    </tr>
+                                ))}
                                 </tbody>
                             </Table>
                         </Col>
@@ -359,13 +509,13 @@ class HomeForm extends Component{
 
                     <Form.Group className="d-flex justify-content-between ">
 
-                        <p> Pozostała liczba godzin do pezedzielenia - 25 </p>
+                        <p> Pozostała liczba godzin do przydzielenia - {this.state.selectedKurs.liczbaGrup} </p>
 
                         <div>
-                            <Button variant="secondary" className="mr-2" onClick={this.handleClose}>
+                            <Button variant="secondary" className="mr-2" onClick={() => this.handleClose(false)}>
                                 Close
                             </Button>
-                            <Button variant="primary" onClick={this.handleClose}>
+                            <Button variant="primary" onClick={() => this.handleClose(true)}>
                                 Save Changes
                             </Button>
                         </div>

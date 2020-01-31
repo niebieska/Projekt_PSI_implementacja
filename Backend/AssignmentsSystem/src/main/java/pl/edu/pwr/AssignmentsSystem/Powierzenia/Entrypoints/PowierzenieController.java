@@ -10,7 +10,7 @@ import pl.edu.pwr.AssignmentsSystem.Commons.Dto.PowierzenieDto;
 import pl.edu.pwr.AssignmentsSystem.Powierzenia.Usecase.PowierzenieService;
 
 import java.util.List;
-
+@CrossOrigin
 @RestController
 public class PowierzenieController {
 
@@ -26,9 +26,13 @@ public class PowierzenieController {
     @PutMapping("/savePowierzenie")
     public ResponseEntity savePowierzenie(@RequestBody PlanPowierzenDto planPowierzenDto)
     {
-        if(powierzenieService.savePowierzenie(planPowierzenDto))
-        {
-            return new ResponseEntity(HttpStatus.CREATED);
+        try {
+            if(powierzenieService.savePowierzenie(planPowierzenDto))
+            {
+                return new ResponseEntity(HttpStatus.CREATED);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }

@@ -44,79 +44,80 @@ public class PowierzenieService {
         return powierzenia.stream().map(PowierzenieMapper::toDto).collect(Collectors.toList());
     }
 
-    public boolean savePowierzenie(PlanPowierzenDto planPowierzenDto) {
+    public boolean savePowierzenie(PlanPowierzenDto planPowierzenDto) throws Exception {
 
         PlanPowierzen planPowierzen = planPowierzenRepository.findById(planPowierzenDto.getId()).orElse(null);
-        if(planPowierzen == null)
-        {
+        Powierzenie powierzenie = PowierzenieMapper.toEntity(planPowierzenDto.getPowierzenia().get(0));
+        Optional<Uzytkownik> uzytkownik = prowadzacyService
+                .getUzytkownikByID(powierzenie.getUzytkownik().getId());
+        Optional<Kurs> kurs = planStudiowService.getKursByID(powierzenie.getKurs().getId());
+
+
+        if (planPowierzen == null || !uzytkownik.isPresent() || !kurs.isPresent() || powierzenie
+                .getLiczbaGodzin() <= 0 || checkStanowiskoPermission(uzytkownik.get(), kurs
+                .get()) || checkFreeTime(uzytkownik.get(), planPowierzen, powierzenie
+                .getLiczbaGodzin()) || checkKursCapacity(planPowierzen, powierzenie, kurs.get())) {
             return false;
         }
-            Powierzenie powierzenie = PowierzenieMapper.toEntity(planPowierzenDto.getPowierzenia().get(0));
-            if (powierzenie.getId() != 0) {
-                Optional<Powierzenie> entity = powierzenieRepository.findById(powierzenie.getId());
-                Optional<Uzytkownik> uzytkownik = prowadzacyService
-                        .getUzytkownikByID(powierzenie.getUzytkownik().getId());
-                Optional<Kurs> kurs = planStudiowService.getKursByID(powierzenie.getKurs().getId());
 
-                if (uzytkownik.isPresent() && kurs.isPresent() && entity.isPresent() && powierzenie
-                        .getLiczbaGodzin() >= 0) {
-                    if(kurs.get().getFormaZajec().equals("wykład") || kurs.get().getFormaZajec().equals("seminarium")  &&  Stanowiska.nieuprawnieni.contains(uzytkownik.get().getStanowisko())){
-                        return  false;
-                    }
-                    Powierzenie toSave = entity.get();
-                    toSave.setAktywny(true);
-                    toSave.setUzytkownik(uzytkownik.get());
-                    toSave.setKurs(kurs.get());
-                    toSave.setLiczbaGodzin(powierzenie.getLiczbaGodzin());
-                    WersjaPowierzenia wersja = new WersjaPowierzenia();
-                    wersja.setLiczbaGodzin(toSave.getLiczbaGodzin());
-                    wersja.setZgodaProwadzacego(toSave.isZgodaProwadzacego());
-                    wersja.setKurs(toSave.getKurs());
-                    wersja.setProwadzacy(toSave.getUzytkownik());
-                    wersja.setWersja(toSave.getWersjePowierzen().stream().map(WersjaPowierzenia::getWersja).max(Comparator.comparing(Integer::valueOf)).orElse(-1) + 1);
-                    toSave.getWersjePowierzen().add(wersja);
-                    planPowierzen.getPowierzenia().add(toSave);
-                    //TODO jeszcze koordynator
-                    planPowierzenRepository.save(planPowierzen);
-                }
-
-            } else {
-                Powierzenie entity = new Powierzenie();
-                Optional<Uzytkownik> uzytkownik = prowadzacyService
-                        .getUzytkownikByID(powierzenie.getUzytkownik().getId());
-                Optional<Kurs> kurs = planStudiowService.getKursByID(powierzenie.getKurs().getId());
-                if (uzytkownik.isPresent() && kurs.isPresent() && powierzenie
-                        .getLiczbaGodzin() >= 0) {
-                    if(kurs.get().getFormaZajec().equals("Wykład") || kurs.get().getFormaZajec().equals("Seminarium")  &&  Stanowiska.nieuprawnieni.contains(uzytkownik.get().getStanowisko())){
-                        return  false;
-                    }
-                    entity.setUzytkownik(uzytkownik.get());
-                    entity.setKurs(kurs.get());
-                    entity.setLiczbaGodzin(powierzenie.getLiczbaGodzin());
-                    entity.setAktywny(true);
-                    WersjaPowierzenia wersja = new WersjaPowierzenia();
-                    wersja.setLiczbaGodzin(entity.getLiczbaGodzin());
-                    wersja.setZgodaProwadzacego(entity.isZgodaProwadzacego());
-                    wersja.setKurs(entity.getKurs());
-                    wersja.setProwadzacy(entity.getUzytkownik());
-                    wersja.setWersja(0);
-                    entity.setWersjePowierzen(new ArrayList<>());
-                    entity.getWersjePowierzen().add(wersja);
-                    planPowierzen.getPowierzenia().add(entity);
-                    //TODO jeszcze koordynator
-                    planPowierzenRepository.save(planPowierzen);
-
-                }
-            }
+        if (powierzenie.getId() != 0) {
+            Powierzenie toSave = powierzenieRepository.findById(powierzenie.getId())
+                    .orElseThrow(() -> new Exception("Wrong powierzenie Id"));
+            toSave.setAktywny(true);
+            toSave.setUzytkownik(uzytkownik.get());
+            toSave.setKurs(kurs.get());
+            toSave.setLiczbaGodzin(powierzenie.getLiczbaGodzin());
+            toSave.setPlanPowierzen(planPowierzen);
+            WersjaPowierzenia wersja = new WersjaPowierzenia();
+            wersja.setLiczbaGodzin(toSave.getLiczbaGodzin());
+            wersja.setZgodaProwadzacego(toSave.isZgodaProwadzacego());
+            wersja.setKurs(toSave.getKurs());
+            wersja.setProwadzacy(toSave.getUzytkownik());
+            wersja.setWersja(toSave.getWersjePowierzen().stream().map(WersjaPowierzenia::getWersja)
+                    .max(Comparator.comparing(Integer::valueOf)).orElse(-1) + 1);
+            toSave.getWersjePowierzen().add(wersja);
+            planPowierzen.getPowierzenia().add(toSave);
+            //TODO jeszcze koordynator
+            planPowierzenRepository.save(planPowierzen);
+        } else {
+            Powierzenie newPowierzenie = new Powierzenie();
+            newPowierzenie.setUzytkownik(uzytkownik.get());
+            newPowierzenie.setKurs(kurs.get());
+            newPowierzenie.setLiczbaGodzin(powierzenie.getLiczbaGodzin());
+            newPowierzenie.setAktywny(true);
+            newPowierzenie.setPlanPowierzen(planPowierzen);
+            WersjaPowierzenia wersja = new WersjaPowierzenia();
+            wersja.setLiczbaGodzin(newPowierzenie.getLiczbaGodzin());
+            wersja.setZgodaProwadzacego(newPowierzenie.isZgodaProwadzacego());
+            wersja.setKurs(newPowierzenie.getKurs());
+            wersja.setProwadzacy(newPowierzenie.getUzytkownik());
+            wersja.setWersja(0);
+            newPowierzenie.setWersjePowierzen(new ArrayList<>());
+            newPowierzenie.getWersjePowierzen().add(wersja);
+            planPowierzen.getPowierzenia().add(newPowierzenie);
+            //TODO jeszcze koordynator
+            planPowierzenRepository.save(planPowierzen);
+        }
         return true;
     }
 
-    public void savePlanPowierzen(PlanPowierzenDto planPowierzenDto)
-    {
+    private boolean checkKursCapacity(PlanPowierzen planPowierzen, Powierzenie powierzenie, Kurs kurs) {
+        return kurs.getLiczbaGodzin() < planPowierzen.getPowierzenia().stream()
+                .filter(x -> x.getKurs().getId() == kurs.getId()).filter(x -> x.getId() != powierzenie.getId()).map(Powierzenie::getLiczbaGodzin).reduce(Integer::sum)
+                .orElse(0) + powierzenie.getLiczbaGodzin();
+    }
+
+    private boolean checkStanowiskoPermission(Uzytkownik uzytkownik, Kurs kurs) {
+        return kurs.getFormaZajec().equals("wykład") || kurs.getFormaZajec()
+                .equals("seminarium") && Stanowiska.nieuprawnieni.contains(uzytkownik.getStanowisko());
+    }
+
+    public void savePlanPowierzen(PlanPowierzenDto planPowierzenDto) {
         PlanPowierzen pp = PowierzenieMapper.toEntity(planPowierzenDto);
         PlanStudiow planStudiow = planStudiowService
                 .getPlanStudiow(planPowierzenDto.getIdentyfikatorSemestru());
         planStudiow.getPlanPowierzenList().add(pp);
+        pp.setPlanStudiow(planStudiow);
         planStudiowService.savePlanStudiow(planStudiow);
     }
 
@@ -128,7 +129,7 @@ public class PowierzenieService {
             int wersja = powierzenie.getWersjePowierzen().stream().map(WersjaPowierzenia::getWersja)
                     .max(Comparator.comparing(Integer::valueOf)).orElse(0);
             WersjaPowierzenia newWersja = new WersjaPowierzenia();
-            newWersja.setWersja(wersja+1);
+            newWersja.setWersja(wersja + 1);
             newWersja.setProwadzacy(powierzenie.getUzytkownik());
             newWersja.setKurs(powierzenie.getKurs());
             newWersja.setLiczbaGodzin(powierzenie.getLiczbaGodzin());
@@ -136,6 +137,16 @@ public class PowierzenieService {
             pow.get().getWersjePowierzen().add(newWersja);
             powierzenieRepository.save(pow.get());
         }
+    }
+
+    private boolean checkFreeTime(Uzytkownik uzytkownik, PlanPowierzen planPowierzen, int liczbGodzin) {
+        int freeTime = uzytkownik.getPensum() - uzytkownik.getPowierzenia().stream().filter(Powierzenie::isAktywny)
+                .filter(x -> x.getPlanPowierzen().isZgodaKoordynatoraZapisow()).map(Powierzenie::getLiczbaGodzin)
+                .reduce(Integer::sum).orElse(0);
+        freeTime -= uzytkownik.getPowierzenia().stream().filter(Powierzenie::isAktywny)
+                .filter(x -> x.getPlanPowierzen().getId() == planPowierzen.getId()).map(Powierzenie::getLiczbaGodzin)
+                .reduce(Integer::sum).orElse(0);
+        return freeTime < liczbGodzin;
     }
 
 }

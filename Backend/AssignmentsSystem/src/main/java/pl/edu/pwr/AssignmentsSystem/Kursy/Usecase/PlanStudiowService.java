@@ -62,6 +62,7 @@ public class PlanStudiowService {
                 planPowierzen.setNazwa("standard");
                 planPowierzen.setZgodaKoordynatoraZapisow(false);
                 planPowierzen.setWersjaPlanu("0");
+                planPowierzen.setPlanStudiow(planStudiow);
                 planStudiow.setPlanPowierzenList(Collections.singletonList(planPowierzen));
                 planStudiowRepository.save(planStudiow);
             }

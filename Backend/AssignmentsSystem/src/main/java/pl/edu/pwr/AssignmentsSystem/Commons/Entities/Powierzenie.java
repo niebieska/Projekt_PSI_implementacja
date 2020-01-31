@@ -25,17 +25,17 @@ public class Powierzenie {
     private String dataUtworzenia;
     private boolean aktywny;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Uzytkownik uzytkownik;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Kurs kurs;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="wersjaPowierzenia")
     private List<WersjaPowierzenia> wersjePowierzen;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Uzytkownik koordynator;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private PlanPowierzen planPowierzen;
 
