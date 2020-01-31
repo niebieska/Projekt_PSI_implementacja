@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: cesystem
+  name: cesystem
+spec:
+  clusterIP: 10.96.5.2
+  ports:  
+  - name: "8082"
+    port: 8082
+    targetPort: 8082
+  type: LoadBalancer
+  selector:
+    io.kompose.service: cesystem
+status:
+  loadBalancer: {}
