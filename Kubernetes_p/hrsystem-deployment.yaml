@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: hrsystem
+  name: hrsystem
+spec:
+  selector:
+    matchLabels:
+      io.kompose.service: hrsystem
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: hrsystem
+    spec:
+      containers:
+      - image: hrsystem
+        imagePullPolicy: Never
+        name: hrsystem
+        env:
+          - name: SERVER_PORT
+            value: '8083'        
+        ports:
+        - containerPort: 8083        
+        resources: {}                
+      restartPolicy: Always
+status: {}
