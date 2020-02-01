@@ -31,6 +31,13 @@ export const returnEntrustPlan = (plan) => axios({
     data: plan
 });
 
+export const loginEndpoint = (user) => axios({
+    method: 'post',
+    url: 'http://localhost:8080/perform_login',
+    data: user
+});
+
+
 
 
 

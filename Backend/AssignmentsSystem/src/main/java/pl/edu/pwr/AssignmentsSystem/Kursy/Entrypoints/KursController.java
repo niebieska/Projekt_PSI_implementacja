@@ -1,10 +1,9 @@
 package pl.edu.pwr.AssignmentsSystem.Kursy.Entrypoints;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import pl.edu.pwr.AssignmentsSystem.Commons.Auth.AuthenticationService;
+import pl.edu.pwr.AssignmentsSystem.Commons.Auth.ROLE;
 import pl.edu.pwr.AssignmentsSystem.Commons.Dto.IdentyfikatorSemestruDto;
 import pl.edu.pwr.AssignmentsSystem.Commons.Dto.PlanStudiowDto;
 import pl.edu.pwr.AssignmentsSystem.Kursy.Usecase.PlanStudiowService;
@@ -18,6 +17,9 @@ public class KursController {
     @Autowired
     private PlanStudiowService planStudiowService;
 
+    @Autowired
+    private AuthenticationService authenticationService;
+
     @PostMapping("/getAllKurs")
     public PlanStudiowDto getAllKursy(@RequestBody IdentyfikatorSemestruDto identyfikatorSemestruDto) {
         return planStudiowService
@@ -25,7 +27,11 @@ public class KursController {
     }
     @GetMapping("/importCoursesFromExternalSystem")
     public boolean importCourses(){
-        return planStudiowService.importPlanStudiowFromExternalSystem();
+        if(authenticationService.isUserPermitted(ROLE.ADMIN.name()))
+        {
+            return planStudiowService.importPlanStudiowFromExternalSystem();
+        }
+        return false;
     }
 
     @GetMapping("/getAllIdentyfikatoryPlanuStudiow")
@@ -34,22 +40,4 @@ public class KursController {
         return planStudiowService.extractIdentyfikatory();
     }
 
-    // tak bedzie chyba autoryzacja
-    @GetMapping("/hello")
-    public ResponseEntity<String> hello() throws Exception {
-        if(SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().noneMatch(x ->  x.getAuthority().equals("USER"))) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        } else {
-            return new ResponseEntity<>("Hello",HttpStatus.OK);
-        }
-    }
-
-    @GetMapping("/helloAdmin")
-    public ResponseEntity<String> helloAdmin() throws Exception {
-        if(SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().noneMatch(x ->  x.getAuthority().equals("ADMIN"))) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        } else {
-            return new ResponseEntity<>("Hello admin",HttpStatus.OK);
-        }
-    }
 }

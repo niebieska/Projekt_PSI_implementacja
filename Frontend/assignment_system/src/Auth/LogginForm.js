@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import "./Login.css";
 import {useHistory} from "react-router";
+import {loginEndpoint} from "../api";
+import * as qs from "querystring";
+import Cookies from 'js-cookie';
 
 export function LoginForm(props) {
     const [email, setEmail] = useState("");
@@ -19,6 +22,14 @@ export function LoginForm(props) {
 
     function onSubmit() {
         console.log('submitted')
+        let user = {
+            username: email,
+            password: password
+        }
+        /*loginEndpoint(qs.stringify(user)).then((response) => {
+            let a = 2;
+            let us = Cookies.get('username');
+        })*/
         history.push('/home')
     }
 

@@ -10,7 +10,7 @@ import java.util.HashMap;
 @RestController
 public class AuthenticationController {
 
-    private BCryptPasswordEncoder crypter = new BCryptPasswordEncoder(15);
+    private BCryptPasswordEncoder crypter = new BCryptPasswordEncoder(5);
 
     private HashMap<String, StandardUser> users = new HashMap<>();
 

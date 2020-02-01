@@ -12,10 +12,12 @@ spec:
   clusterIP: 10.96.5.20
   ports:  
   - name: "11211"
+    nodePort: 30465
     port: 11211
-    targetPort: 11211
   type: LoadBalancer
   selector:
     io.kompose.service: memcache
+  externalIPs: 
+    - 192.168.99.102
 status:
   loadBalancer: {}

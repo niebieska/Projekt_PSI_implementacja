@@ -2,6 +2,7 @@ package pl.edu.pwr.AssignmentsSystem.Powierzenia.Usecase;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.edu.pwr.AssignmentsSystem.Commons.Auth.AuthenticationService;
 import pl.edu.pwr.AssignmentsSystem.Commons.Dto.IdentyfikatorSemestruDto;
 import pl.edu.pwr.AssignmentsSystem.Commons.Dto.PowierzenieDto;
 import pl.edu.pwr.AssignmentsSystem.Commons.Entities.*;

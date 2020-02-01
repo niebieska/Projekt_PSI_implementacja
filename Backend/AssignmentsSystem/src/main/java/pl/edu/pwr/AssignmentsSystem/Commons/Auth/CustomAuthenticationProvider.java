@@ -23,7 +23,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    private BCryptPasswordEncoder crypter = new BCryptPasswordEncoder(15);
+    private BCryptPasswordEncoder crypter = new BCryptPasswordEncoder(5);
 
     @Value(value = "${external.system.auth}")
     private String auth;

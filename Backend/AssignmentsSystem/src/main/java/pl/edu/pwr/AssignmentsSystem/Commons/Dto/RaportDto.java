@@ -1,4 +1,4 @@
-package pl.edu.pwr.AssignmentsSystem.Raporty.Entrypoints.Dto;
+package pl.edu.pwr.AssignmentsSystem.Commons.Dto;
 
 
 import pl.edu.pwr.AssignmentsSystem.Commons.Dto.PlanPowierzenDto;

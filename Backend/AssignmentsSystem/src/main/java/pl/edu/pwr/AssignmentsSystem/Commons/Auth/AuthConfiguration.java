@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
@@ -22,9 +23,14 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().anyRequest().permitAll()
                 .and()
+                .cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()).and()
                 .formLogin()
+                .loginProcessingUrl("/perform_login")
+                .successHandler(new CustomAuthenticationSuccessHandler())
                 .and()
-                .httpBasic()
+                .logout()
+                .logoutUrl("/perform_logout")
+                .deleteCookies("JSESSIONID")
                 .and()
                 .csrf().disable();
     }
