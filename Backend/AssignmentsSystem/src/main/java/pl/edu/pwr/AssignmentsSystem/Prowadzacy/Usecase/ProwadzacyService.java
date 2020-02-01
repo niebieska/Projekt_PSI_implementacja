@@ -4,13 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import pl.edu.pwr.AssignmentsSystem.Commons.Dto.IdentyfikatorSemestruDto;
-import pl.edu.pwr.AssignmentsSystem.Commons.Dto.PlanStudiowDto;
 import pl.edu.pwr.AssignmentsSystem.Commons.Dto.ProwadzacyDto;
-import pl.edu.pwr.AssignmentsSystem.Commons.Entities.PlanPowierzen;
-import pl.edu.pwr.AssignmentsSystem.Commons.Entities.PlanStudiow;
 import pl.edu.pwr.AssignmentsSystem.Commons.Entities.Uzytkownik;
-import pl.edu.pwr.AssignmentsSystem.Commons.Utils.KursMapper;
 import pl.edu.pwr.AssignmentsSystem.Commons.Utils.ProwadzacyMapper;
 import pl.edu.pwr.AssignmentsSystem.Prowadzacy.Respository.ProwadzacyRepository;
 

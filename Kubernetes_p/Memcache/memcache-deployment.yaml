@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: memcache
+  name: memcache
+spec:
+  selector:
+    matchLabels:
+      io.kompose.service: memcache
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: memcache
+    spec:
+      containers:
+      - image: memcached
+        name: memcache
+        env:
+          - name: SERVER_PORT
+            value: '11211'        
+        ports:
+        - containerPort: 11211        
+        resources: {}                
+      restartPolicy: Always
+status: {}

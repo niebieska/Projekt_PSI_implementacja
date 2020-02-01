@@ -1,8 +1,9 @@
 package pl.edu.pwr.AssignmentsSystem.Commons.Dto;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ModulDto {
+public class ModulDto implements Serializable {
     int id;
     int liczbaGodzin;
     String nazwa;

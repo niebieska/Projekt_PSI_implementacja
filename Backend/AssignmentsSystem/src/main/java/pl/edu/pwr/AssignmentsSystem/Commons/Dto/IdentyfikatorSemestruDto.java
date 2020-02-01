@@ -1,6 +1,8 @@
 package pl.edu.pwr.AssignmentsSystem.Commons.Dto;
 
-public class IdentyfikatorSemestruDto {
+import java.io.Serializable;
+
+public class IdentyfikatorSemestruDto implements Serializable {
 
 
     String cyklKsztalcenia;

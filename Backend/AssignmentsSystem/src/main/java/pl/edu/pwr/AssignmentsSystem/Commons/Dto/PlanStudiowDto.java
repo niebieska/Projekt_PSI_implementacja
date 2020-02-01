@@ -1,8 +1,9 @@
 package pl.edu.pwr.AssignmentsSystem.Commons.Dto;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PlanStudiowDto {
+public class PlanStudiowDto implements Serializable {
 
     int liczbaStudentow;
     IdentyfikatorSemestruDto identyfikatorSemestru;

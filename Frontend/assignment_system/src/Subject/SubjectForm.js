@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {Button, Col, Row, Form, Table, Modal, FormControl } from "react-bootstrap";
 import {Select} from "../Common/Components/Select";
 import './Subject.css'
-import {getOptions, getSubjectData, getEntrustPlan, saveEntrustPlan, getStaff, saveEntrust} from '../api'
+import {getOptions, getSubjectData, getEntrustPlan, saveEntrustPlan, getStaff, saveEntrust, approveEntrustPlan, returnEntrustPlan} from '../api'
+import toast from 'toasted-notes'
+import 'toasted-notes/src/styles.css'
 
 
 class HomeForm extends Component{
@@ -38,6 +40,45 @@ class HomeForm extends Component{
         this.handleChangeEntrustPlan = this.handleChangeEntrustPlan.bind(this)
         this.handleCreateNewPlan = this.handleCreateNewPlan.bind(this)
         this.handleNumberOfHours = this.handleNumberOfHours.bind(this)
+        this.handleZatwierdzPlan = this.handleZatwierdzPlan.bind(this)
+        this.handleReturnPlanPowierzen = this.handleReturnPlanPowierzen.bind(this)
+    }
+
+    handleZatwierdzPlan(){
+        approveEntrustPlan(this.state.selectedPlan).then((response) => {
+            toast.notify("Plan został zatwierdzony")
+            getEntrustPlan({
+                "cyklKsztalcenia": this.state.wybRok,
+                "kierunekStudiow": this.state.wybKierunek,
+                "specjalnosc": this.state.wybSpecjalnosc,
+                "numerSemestru": this.state.wybSemestr
+            }).then((response) => {
+                this.setState({entrustPlans : response.data})
+                this.state.selectedPlan = response.data.find(x => x.nazwa === this.state.selectedPlan.nazwa);
+                this.setState({selectedPlan : response.data.find(x => x.nazwa === this.state.selectedPlan.nazwa)});
+            })
+        }).catch((error) => {
+            error.response.data.map(obj => {
+                toast.notify(obj)
+            })
+        })
+    }
+
+    handleReturnPlanPowierzen(){
+        returnEntrustPlan(this.state.selectedPlan).then((response) => {
+            toast.notify("Plan został cofnięty")
+            getEntrustPlan({
+                "cyklKsztalcenia": this.state.wybRok,
+                "kierunekStudiow": this.state.wybKierunek,
+                "specjalnosc": this.state.wybSpecjalnosc,
+                "numerSemestru": this.state.wybSemestr
+            }).then((response) => {
+                this.setState({entrustPlans : response.data})
+                this.setState({selectedPlan : response.data.find(x => x.nazwa === this.state.selectedPlan.nazwa)});
+            })
+        }).catch((error) => {
+                toast.notify("Problem z wycofaniem planu")
+        })
     }
 
     typ = "Nowe przedzielenie";
@@ -47,8 +88,8 @@ class HomeForm extends Component{
         this.setState({show: false});
         if (save) {
             this.toUpdate.map((obj) => {
-                let powierzenieId = this.state.selectedPlan.powierzenia.find(x => x.prowadzacy.id === obj.id && x.kurs.id === this.state.selectedKurs.id);
-                if(powierzenieId != undefined)
+                let powierzenieId = this.state.selectedPlan.powierzenia.find(x => x.prowadzacy.id === obj.prow.id && x.kurs.id === this.state.selectedKurs.id);
+                if(powierzenieId !== undefined)
                 {
                     powierzenieId = powierzenieId.id;
                 }else{
@@ -59,7 +100,7 @@ class HomeForm extends Component{
                             {
                                 "id" : powierzenieId,
                                 "prowadzacy": {
-                                    "id": obj.id
+                                    "id": obj.prow.id
                                 },
                                 "kurs": {
                                     "id": this.state.selectedKurs.id
@@ -88,7 +129,10 @@ class HomeForm extends Component{
                             this.state.selectedPlan = response.data.find(x => x.nazwa === this.state.selectedPlan.nazwa);
                             this.mergeBothPlans();
                         })
+                        toast.notify("Powierzenie " + obj.prow.imie + " " + obj.prow.nazwisko + " na " + this.state.selectedKurs.nazwa + " zapisane!");
                     }
+                }).catch(error => {
+                    toast.notify("Powierzenie " + obj.prow.imie + " " + obj.prow.nazwisko + " na " + this.state.selectedKurs.nazwa + " nie powiodło sie!");
                 })
             })
         }
@@ -106,9 +150,10 @@ class HomeForm extends Component{
         this.calculateOptions('rok', event)
     }
 
-    handleNumberOfHours(event, id) {
+    handleNumberOfHours(event, prow) {
+        let id = prow.id;
         this.toUpdate[id] = {
-            "id": id,
+            "prow": prow,
             "value" : event
         };
         if(event === undefined || event === '')
@@ -167,11 +212,14 @@ class HomeForm extends Component{
                     let prow = this.state.selectedPlan.powierzenia[j].prowadzacy
                     prow.occupiedTime = this.state.selectedPlan.powierzenia[j].liczbaGodzin;
                     this.state.mergedKurses[i].prowadzacy.push(prow)
-                    this.state.updatedProwadzacy.find(x => x.email === prow.email).pozostaloPensum -= this.state.selectedPlan.powierzenia[j].liczbaGodzin;
+                    if(this.state.selectedPlan.zatwierdzony === false) {
+                        this.state.updatedProwadzacy.find(x => x.email === prow.email).pozostaloPensum -= this.state.selectedPlan.powierzenia[j].liczbaGodzin;
+                    }
                 }
             }
         }
         this.setState({mergedKurses : this.state.mergedKurses});
+        this.setState({updatedProwadzacy : this.state.updatedProwadzacy});
     }
 
     calculateOptions(option, value){
@@ -272,7 +320,11 @@ class HomeForm extends Component{
                 this.setState({entrustPlans : response.data})
                 this.state.selectedPlan = response.data[0]
                 this.setState({selectedPlan:response.data[0]})
-                this.mergeBothPlans()
+                getStaff().then((response) => {
+                    this.setState({prowadzacy : response.data})
+                    this.state.prowadzacy = response.data;
+                    this.mergeBothPlans()
+                })
             })
 
         });
@@ -292,9 +344,7 @@ class HomeForm extends Component{
 
             this.calculateOptions('rok', choosenRok[0]);
         });
-        getStaff().then((response) => {
-            this.setState({prowadzacy : response.data})
-        })
+
 
     };
 
@@ -314,12 +364,6 @@ class HomeForm extends Component{
 
     submit(event){
         event.preventDefault();
-
-        console.log( this.kierunekStudiow );
-        console.log( this.specjalnosc );
-        console.log( this.rok );
-        console.log( this.numerSemestru );
-        console.log( this.typ );
     };
 
     render () {
@@ -349,9 +393,9 @@ class HomeForm extends Component{
                 </Col>
                 <Col>
                     <div>
-                        <Button onClick={this.handleCreateNewPlan}>Create new plan</Button>
+                        <Button onClick={this.handleCreateNewPlan}>Utwórz nowy plan powierzeń</Button>
                     </div>
-                </Col>>
+                </Col>
             </Row>
             <Row>
                 <Col md={10}>
@@ -402,7 +446,7 @@ class HomeForm extends Component{
                                 {kurs.prowadzacy.map((prow, index) => (
                                     <tr key={index}> {prow.imie + " " + prow.nazwisko + "(" + prow.occupiedTime + ")"} </tr>
                                 ))}
-                                <td><Button className="round-button" onClick={() => this.handleShow(kurs)}>+</Button></td>
+                                {this.state.selectedPlan.zatwierdzony === false && <td><Button className="round-button" onClick={() => this.handleShow(kurs)}>+</Button></td>}
                             </td>
                         </tr>
                     ))}
@@ -411,8 +455,11 @@ class HomeForm extends Component{
 
             </Row>
             <Row className="justify-content-end">
-                <Button type="submit" className="mr-2">Zapisz wersję roboczą</Button>
-                <Button type="submit" onClick={this.submit}>Zatwierdz</Button>
+                {   this.state.selectedPlan.zatwierdzony === false &&
+                    <Button onClick={this.handleZatwierdzPlan}>Zatwierdź plan</Button>}
+                {this.state.selectedPlan.zatwierdzony === true &&
+                    <Button onClick={this.handleReturnPlanPowierzen}>Cofnij plan</Button>
+                }
             </Row>
 
             <Row>
@@ -499,7 +546,7 @@ class HomeForm extends Component{
                                         <td>{prow.id}</td>
                                         <td>{prow.imie + " " + prow.nazwisko}</td>
                                         <td>{prow.pozostaloPensum}</td>
-                                        <td><FormControl defaultValue={this.state.selectedPlan.powierzenia.filter(x => x.prowadzacy.id === prow.id && x.kurs.id === this.state.selectedKurs.id).map(x => x.liczbaGodzin).reduce( (x, y) => x + y, 0)} type="text" className="mr-sm-2" onChange={(eve) => this.handleNumberOfHours(eve.target.value, prow.id)}/></td>
+                                        <td><FormControl defaultValue={this.state.selectedPlan.powierzenia.filter(x => x.prowadzacy.id === prow.id && x.kurs.id === this.state.selectedKurs.id).map(x => x.liczbaGodzin).reduce( (x, y) => x + y, 0)} type="text" className="mr-sm-2" onChange={(eve) => this.handleNumberOfHours(eve.target.value, prow)}/></td>
                                     </tr>
                                 ))}
                                 </tbody>

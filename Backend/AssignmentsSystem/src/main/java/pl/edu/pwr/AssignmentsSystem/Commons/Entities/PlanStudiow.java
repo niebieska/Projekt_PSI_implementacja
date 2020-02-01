@@ -3,10 +3,11 @@ package pl.edu.pwr.AssignmentsSystem.Commons.Entities;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class PlanStudiow {
+public class PlanStudiow implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull

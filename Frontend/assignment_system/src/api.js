@@ -19,6 +19,20 @@ export const saveEntrustPlan = (plan) => axios({
     data: plan
 });
 
+export const approveEntrustPlan = (plan) => axios({
+    method: 'post',
+    url: 'http://localhost:8080/approvePlanPowierzen',
+    data: plan
+});
+
+export const returnEntrustPlan = (plan) => axios({
+    method: 'post',
+    url: 'http://localhost:8080/returnPlanPowierzen',
+    data: plan
+});
+
+
+
 
 /*
 {

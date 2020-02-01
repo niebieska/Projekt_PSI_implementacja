@@ -1,6 +1,8 @@
 package pl.edu.pwr.AssignmentsSystem.Commons.Dto;
 
-public class KursDto {
+import java.io.Serializable;
+
+public class KursDto implements Serializable {
     int id;
     String formaZajec;
     int liczbaGodzin;

@@ -14,10 +14,7 @@ import pl.edu.pwr.AssignmentsSystem.Powierzenia.Respository.WersjaPowtorzenieRep
 import pl.edu.pwr.AssignmentsSystem.Commons.Utils.Stanowiska;
 import pl.edu.pwr.AssignmentsSystem.Prowadzacy.Usecase.ProwadzacyService;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -44,7 +41,7 @@ public class PowierzenieService {
         return powierzenia.stream().map(PowierzenieMapper::toDto).collect(Collectors.toList());
     }
 
-    public boolean savePowierzenie(PlanPowierzenDto planPowierzenDto) throws Exception {
+    public synchronized boolean savePowierzenie(PlanPowierzenDto planPowierzenDto) throws Exception {
 
         PlanPowierzen planPowierzen = planPowierzenRepository.findById(planPowierzenDto.getId()).orElse(null);
         Powierzenie powierzenie = PowierzenieMapper.toEntity(planPowierzenDto.getPowierzenia().get(0));
@@ -54,10 +51,18 @@ public class PowierzenieService {
 
 
         if (planPowierzen == null || !uzytkownik.isPresent() || !kurs.isPresent() || powierzenie
-                .getLiczbaGodzin() <= 0 || checkStanowiskoPermission(uzytkownik.get(), kurs
-                .get()) || checkFreeTime(uzytkownik.get(), planPowierzen, powierzenie
-                .getLiczbaGodzin()) || checkKursCapacity(planPowierzen, powierzenie, kurs.get())) {
+                .getLiczbaGodzin() <= 0) {
             return false;
+        } else {
+            powierzenie.setUzytkownik(uzytkownik.get());
+            powierzenie.setKurs(kurs.get());
+            if (checkStanowiskoPermission(uzytkownik.get(), kurs
+                    .get()) || checkFreeTime(powierzenie, planPowierzen) || checkKursCapacity(planPowierzen,
+                    powierzenie, kurs
+                    .get()) || planPowierzen
+                    .isZgodaKoordynatoraZapisow()) {
+                return false;
+            }
         }
 
         if (powierzenie.getId() != 0) {
@@ -103,7 +108,8 @@ public class PowierzenieService {
 
     private boolean checkKursCapacity(PlanPowierzen planPowierzen, Powierzenie powierzenie, Kurs kurs) {
         return kurs.getLiczbaGodzin() < planPowierzen.getPowierzenia().stream()
-                .filter(x -> x.getKurs().getId() == kurs.getId()).filter(x -> x.getId() != powierzenie.getId()).map(Powierzenie::getLiczbaGodzin).reduce(Integer::sum)
+                .filter(x -> x.getKurs().getId() == kurs.getId()).filter(x -> x.getId() != powierzenie.getId())
+                .map(Powierzenie::getLiczbaGodzin).reduce(Integer::sum)
                 .orElse(0) + powierzenie.getLiczbaGodzin();
     }
 
@@ -119,6 +125,36 @@ public class PowierzenieService {
         planStudiow.getPlanPowierzenList().add(pp);
         pp.setPlanStudiow(planStudiow);
         planStudiowService.savePlanStudiow(planStudiow);
+    }
+
+    public synchronized List<String> approvePlanPowierzen(PlanPowierzenDto planPowierzenDto) {
+        Optional<PlanPowierzen> planPowierzen = planPowierzenRepository.findById(planPowierzenDto.getId());
+        if (planPowierzen.isPresent() && planPowierzen.get().getPlanStudiow().getPlanPowierzenList().stream()
+                .filter(x -> x.getId() != planPowierzen.get().getId())
+                .anyMatch(PlanPowierzen::isZgodaKoordynatoraZapisow)) {
+            return Arrays.asList("Inny plan został już zatwierdzony");
+        }
+        List<String> result = new ArrayList<>();
+        planPowierzen.ifPresent(powierzen -> result.addAll(powierzen.getPowierzenia().stream()
+                .filter(pow -> checkFreeTime(pow, powierzen))
+                .map(pow -> "Problem z " + pow.getKurs().getNazwa() + " prowadzaonym przez " + pow.getUzytkownik()
+                        .getImie() + " " + pow.getUzytkownik().getNazwisko()).collect(Collectors.toList())));
+        if (result.isEmpty() && planPowierzen.isPresent()) {
+            planPowierzen.get().setZgodaKoordynatoraZapisow(true);
+            planPowierzenRepository.save(planPowierzen.get());
+
+        }
+        return result;
+    }
+
+    public synchronized boolean returnPlanPowierzen(PlanPowierzenDto planPowierzenDto) {
+        Optional<PlanPowierzen> planPowierzen = planPowierzenRepository.findById(planPowierzenDto.getId());
+        if (planPowierzen.isPresent()) {
+            planPowierzen.get().setZgodaKoordynatoraZapisow(false);
+            planPowierzenRepository.save(planPowierzen.get());
+            return true;
+        }
+        return false;
     }
 
     public void removePowierzenie(PowierzenieDto powierzenieDto) {
@@ -139,14 +175,14 @@ public class PowierzenieService {
         }
     }
 
-    private boolean checkFreeTime(Uzytkownik uzytkownik, PlanPowierzen planPowierzen, int liczbGodzin) {
-        int freeTime = uzytkownik.getPensum() - uzytkownik.getPowierzenia().stream().filter(Powierzenie::isAktywny)
-                .filter(x -> x.getPlanPowierzen().isZgodaKoordynatoraZapisow()).map(Powierzenie::getLiczbaGodzin)
+    private boolean checkFreeTime(Powierzenie powierzenie, PlanPowierzen planPowierzen) {
+        int freeTime = powierzenie.getUzytkownik().getPensum() - powierzenie.getUzytkownik().getPowierzenia().stream().filter(Powierzenie::isAktywny)
+                .filter(x -> x.getPlanPowierzen().isZgodaKoordynatoraZapisow()).filter(x -> x.getId() != powierzenie.getId()).map(Powierzenie::getLiczbaGodzin)
                 .reduce(Integer::sum).orElse(0);
-        freeTime -= uzytkownik.getPowierzenia().stream().filter(Powierzenie::isAktywny)
-                .filter(x -> x.getPlanPowierzen().getId() == planPowierzen.getId()).map(Powierzenie::getLiczbaGodzin)
+        freeTime -= powierzenie.getUzytkownik().getPowierzenia().stream().filter(Powierzenie::isAktywny)
+                .filter(x -> x.getPlanPowierzen().getId() == planPowierzen.getId()).filter(x -> x.getId() != powierzenie.getId()).map(Powierzenie::getLiczbaGodzin)
                 .reduce(Integer::sum).orElse(0);
-        return freeTime < liczbGodzin;
+        return freeTime < powierzenie.getLiczbaGodzin();
     }
 
 }

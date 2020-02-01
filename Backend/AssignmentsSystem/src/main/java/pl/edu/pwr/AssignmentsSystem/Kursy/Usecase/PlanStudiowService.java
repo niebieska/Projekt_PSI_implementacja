@@ -2,6 +2,7 @@ package pl.edu.pwr.AssignmentsSystem.Kursy.Usecase;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pl.edu.pwr.AssignmentsSystem.Commons.Entities.Kurs;
@@ -29,7 +30,7 @@ public class PlanStudiowService {
     @Autowired
     private KursRepository kursRepository;
 
-
+    @Cacheable("PlanStudiowForKey")
     public PlanStudiowDto getPlanStudiowForKey(IdentyfikatorSemestruDto identyfikatorSemestruDto) {
         PlanStudiow planStudiow =
                 planStudiowRepository
@@ -39,6 +40,7 @@ public class PlanStudiowService {
                                 .getSpecjalnosc(), identyfikatorSemestruDto.getNumerSemestru());
         return Optional.ofNullable(planStudiow).map(KursMapper::toPlanStudioDto).orElse(null);
     }
+
     public PlanStudiow getPlanStudiow(IdentyfikatorSemestruDto identyfikatorSemestruDto) {
 
                 return planStudiowRepository
@@ -75,6 +77,7 @@ public class PlanStudiowService {
         planStudiowRepository.save(ps);
     }
 
+    @Cacheable("PlanStudiowIdentifier")
     public List<IdentyfikatorSemestruDto> extractIdentyfikatory()
     {
         return planStudiowRepository.findAllPlanStudiowGroupedByIdentfikator();
