@@ -5,5 +5,4 @@ RUN apt-get --assume-yes install git
 RUN git clone "https://github.com/niebieska/Projekt_PSI_implementacja"
 RUN cd Projekt_PSI_implementacja/ 
 RUN cd Projekt_PSI_implementacja/Frontend/assignment_system && npm clean-install 
-RUN cd Projekt_PSI_implementacja/Frontend/assignment_system && npm install axios 
-RUN cd Projekt_PSI_implementacja/Frontend/assignment_system && npm start
+CMD cd Projekt_PSI_implementacja/Frontend/assignment_system && npm start
