@@ -2,69 +2,50 @@ package pl.edu.pwr.AuthorizationSystem.Controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 public class AuthenticationController {
 
-    private BCryptPasswordEncoder crypter = new BCryptPasswordEncoder(5);
+    private HashMap<String, UserDTO> users = new HashMap<>();
 
-    private HashMap<String, StandardUser> users = new HashMap<>();
+    private BCryptPasswordEncoder crypter = new BCryptPasswordEncoder();
 
     public AuthenticationController(){
-        StandardUser admin = new StandardUser();
+        UserDTO admin = new UserDTO();
         admin.setEmail("admin@pwr.edu.pl");
         admin.setPassword("admin");
-        admin.setRole("ADMIN");
+        admin.setRoles(Arrays.asList("ADMIN"));
 
-        StandardUser user = new StandardUser();
+        UserDTO user = new UserDTO();
         user.setEmail("user@pwr.edu.pl");
         user.setPassword("user");
-        user.setRole("USER");
+        user.setRoles(Arrays.asList("USER"));
 
         users.put(admin.getEmail(), admin);
         users.put(user.getEmail(), user);
     }
 
     @PostMapping(path="/auth", consumes = "application/json")
-    public String auth(@RequestBody UserDto user)
+    public UserDTO auth(@RequestBody UserDTO user)
     {
-        if(users.get(user.email) != null && crypter.matches(users.get(user.email).getPassword(),user.password))
+        if(users.get(user.getEmail()) != null)
         {
-            return users.get(user.email).getRole();
+            UserDTO fromDB = users.get(user.getEmail());
+            UserDTO userDTO = new UserDTO();
+            userDTO.setEmail(fromDB.getEmail());
+            userDTO.setPassword(crypter.encode(fromDB.getPassword()));
+            userDTO.setRoles(fromDB.getRoles());
+            return userDTO;
         }
         return null;
     }
 
-    private static class UserDto{
-        private String email;
-        private String password;
 
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-        public UserDto(String email, String password) {
-            this.email = email;
-            this.password = password;
-        }
-
-        public UserDto() {
-        }
-    }
 }
