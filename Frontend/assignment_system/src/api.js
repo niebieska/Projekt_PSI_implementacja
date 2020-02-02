@@ -1,7 +1,10 @@
 const axios = require('axios');
 
 
-const origin = process.env.REACT_APP_API_URI;
+let origin = process.env.REACT_APP_API_URI;
+if(process.env.REACT_APP_API_URI === "prod"){
+    origin = "http://" + window.location.hostname + ":" + "30466";
+}
 
 export const getOptions = () => axios({
     method: 'get',
