@@ -485,8 +485,8 @@ class HomeForm extends Component {
                         </tr>
                         </thead>
                         <tbody>
-                        {this.state.mergedKurses.map((kurs) => (
-                            <tr key={kurs.id}>
+                        {this.state.mergedKurses.map((kurs, index) => (
+                            <tr key={index}>
                                 <td>{kurs.id}</td>
                                 <td>{kurs.nazwa}</td>
                                 <td>{kurs.liczbaGodzin}</td>
@@ -594,9 +594,9 @@ class HomeForm extends Component {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {this.state.updatedProwadzacy.map((prow) => (
+                                    {this.state.updatedProwadzacy.map((prow, index) => (
                                         <tr>
-                                            <td>{prow.id}</td>
+                                            <td>{index}</td>
                                             <td>{prow.imie + " " + prow.nazwisko}</td>
                                             <td>{prow.pozostaloPensum}</td>
                                             <td><FormControl
