@@ -33,8 +33,8 @@ public class ProwadzacyController {
     @GetMapping("/importUzytkownikow")
     public void importUzytkownikow()
     {
-        if(authenticationService.isUserPermitted(ROLE.ADMIN.name())) {
+        //if(authenticationService.isUserPermitted(ROLE.ADMIN.name())) {
             prowadzacyService.importUzytkownikow();
-        }
+       // }
     }
 }

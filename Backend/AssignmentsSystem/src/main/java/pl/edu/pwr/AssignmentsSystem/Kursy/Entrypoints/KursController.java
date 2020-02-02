@@ -27,11 +27,11 @@ public class KursController {
     }
     @GetMapping("/importCoursesFromExternalSystem")
     public boolean importCourses(){
-        if(authenticationService.isUserPermitted(ROLE.ADMIN.name()))
-        {
+        //if(authenticationService.isUserPermitted(ROLE.ADMIN.name()))
+        //{
             return planStudiowService.importPlanStudiowFromExternalSystem();
-        }
-        return false;
+        //}
+        //return false;
     }
 
     @GetMapping("/getAllIdentyfikatoryPlanuStudiow")

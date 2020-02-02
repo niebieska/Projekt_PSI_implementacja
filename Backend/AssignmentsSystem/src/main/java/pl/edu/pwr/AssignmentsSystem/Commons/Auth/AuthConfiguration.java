@@ -53,7 +53,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
 // We don't need CSRF for this example
         httpSecurity.csrf().disable()
 // dont authenticate this particular request
-                .authorizeRequests().antMatchers("/authenticate", "/getAllIdentyfikatoryPlanuStudiow").permitAll().
+                .authorizeRequests().antMatchers("/authenticate", "/getAllIdentyfikatoryPlanuStudiow", "/importCoursesFromExternalSystem", "/importUzytkownikow").permitAll().
 // all other requests need to be authenticated
         anyRequest().authenticated()
                 .and().cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues())
