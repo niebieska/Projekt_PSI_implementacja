@@ -4,5 +4,5 @@ RUN apt-get update -y
 RUN apt-get --assume-yes install git
 RUN git clone "https://github.com/niebieska/Projekt_PSI_implementacja"
 RUN cd Projekt_PSI_implementacja/ 
-RUN cd Projekt_PSI_implementacja/Backend/AssignmentsSystem && mvn clean install 
+RUN cd Projekt_PSI_implementacja/Backend/AssignmentsSystem && mvn -Pprod clean install -DskipTests
 CMD java -jar Projekt_PSI_implementacja/Backend/AssignmentsSystem/target/AssignmentsSystem-0.0.1-SNAPSHOT.jar
