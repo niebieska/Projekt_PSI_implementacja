@@ -1,41 +1,88 @@
 const axios = require('axios');
-export const getOptions = () => axios.get('http://localhost:8080/getAllIdentyfikatoryPlanuStudiow');
+
+
+const origin = process.env.REACT_APP_API_URI;
+
+export const getOptions = () => axios({
+    method: 'get',
+    url: origin + '/getAllIdentyfikatoryPlanuStudiow'
+});
 
 export const getSubjectData = (iden) => axios({
     method: 'post',
-    url: 'http://localhost:8080/getAllKurs',
-    data: iden
+    url: origin + '/getAllKurs',
+    data: iden,
+    headers : attachAuthenticationToken()
 });
 
 export const getEntrustPlan = (iden) => axios({
     method: 'post',
-    url: 'http://localhost:8080/getPlanPowierzen',
-    data: iden
+    url: origin + '/getPlanPowierzen',
+    data: iden,
+    headers : attachAuthenticationToken()
 });
 
 export const saveEntrustPlan = (plan) => axios({
-    method: 'put',
-    url: 'http://localhost:8080/savePlanPowierzen',
-    data: plan
+    method: 'post',
+    url: origin + '/savePlanPowierzen',
+    data: plan,
+    headers : attachAuthenticationToken()
 });
 
 export const approveEntrustPlan = (plan) => axios({
     method: 'post',
-    url: 'http://localhost:8080/approvePlanPowierzen',
-    data: plan
+    url: origin + '/approvePlanPowierzen',
+    data: plan,
+    headers : attachAuthenticationToken()
 });
 
 export const returnEntrustPlan = (plan) => axios({
     method: 'post',
-    url: 'http://localhost:8080/returnPlanPowierzen',
-    data: plan
+    url: origin + '/returnPlanPowierzen',
+    data: plan,
+    headers : attachAuthenticationToken()
 });
 
 export const loginEndpoint = (user) => axios({
     method: 'post',
-    url: 'http://localhost:8080/perform_login',
-    data: user
+    url: origin + '/authenticate',
+    data: user,
+    headers:{
+        "Content-Type":"application/json"
+    }
 });
+
+export const getStaff = () => axios({
+    method: 'get',
+    url: origin + '/allProwadzacy',
+    headers : attachAuthenticationToken()
+});
+
+export const saveEntrust = (plan) => axios({
+    method: 'post',
+    url: origin + '/savePowierzenie',
+    data: plan,
+    headers : attachAuthenticationToken()
+});
+
+export const removeEntrust = (plan) => axios({
+    method: 'post',
+    url: origin + '/removePowierzenie',
+    data: plan,
+    headers : attachAuthenticationToken()
+});
+
+const attachAuthenticationToken = () =>{
+    if(localStorage.getItem("token"))
+    {
+        return {
+            Authorization: "Bearer " + localStorage.getItem("token")
+        }
+    }
+    else {
+        return {};
+    }
+}
 
 
 
@@ -50,13 +97,7 @@ export const loginEndpoint = (user) => axios({
     "id": 0
 }
 */
-export const getStaff = () => axios.get('http://localhost:8080/allProwadzacy');
 
-export const saveEntrust = (plan) => axios({
-    method: 'put',
-    url: 'http://localhost:8080/savePowierzenie',
-    data: plan
-});
 
 /*
 {

@@ -19,12 +19,12 @@ public class AuthenticationController {
 
     public AuthenticationController(){
         UserDTO admin = new UserDTO();
-        admin.setEmail("admin@pwr.edu.pl");
+        admin.setEmail("mateusz.klimiuk@pwr.edu.pl");
         admin.setPassword("admin");
-        admin.setRoles(Arrays.asList("ADMIN"));
+        admin.setRoles(Arrays.asList("ADMIN", "USER"));
 
         UserDTO user = new UserDTO();
-        user.setEmail("user@pwr.edu.pl");
+        user.setEmail("mykhailo.stavniichuk@pwr.edu.pl");
         user.setPassword("user");
         user.setRoles(Arrays.asList("USER"));
 

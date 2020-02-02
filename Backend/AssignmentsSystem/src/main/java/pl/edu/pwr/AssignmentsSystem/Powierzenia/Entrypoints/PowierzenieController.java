@@ -13,6 +13,7 @@ import pl.edu.pwr.AssignmentsSystem.Powierzenia.Usecase.PowierzenieService;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @CrossOrigin
 @RestController
 public class PowierzenieController {
@@ -32,7 +33,7 @@ public class PowierzenieController {
         return new ArrayList<>();
     }
 
-    @PutMapping("/savePowierzenie")
+    @PostMapping("/savePowierzenie")
     public ResponseEntity savePowierzenie(@RequestBody PlanPowierzenDto planPowierzenDto)
     {
         if(!authenticationService.isUserPermitted(ROLE.ADMIN.name())) {
@@ -48,7 +49,7 @@ public class PowierzenieController {
         }
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
-    @PutMapping("/savePlanPowierzen")
+    @PostMapping("/savePlanPowierzen")
     public ResponseEntity savePlanPowierzen(@RequestBody PlanPowierzenDto planPowierzenDto)
     {
         if(!authenticationService.isUserPermitted(ROLE.ADMIN.name())) {

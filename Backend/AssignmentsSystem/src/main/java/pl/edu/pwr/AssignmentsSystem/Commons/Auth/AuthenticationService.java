@@ -9,11 +9,10 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService {
 
     public boolean isUserPermitted(String role){
-        /*if(SecurityContextHolder
-                .getContext().getAuthentication().getAuthorities().stream().noneMatch(x ->  x.getAuthority().equals("role"))) {
+        if(SecurityContextHolder
+                .getContext().getAuthentication().getAuthorities().stream().noneMatch(x ->  x.getAuthority().equals(role))) {
             return false;
         }
-        return true;*/
         return true;
     }
 }

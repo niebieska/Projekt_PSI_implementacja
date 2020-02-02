@@ -3,8 +3,8 @@ import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import "./Login.css";
 import {useHistory} from "react-router";
 import {loginEndpoint} from "../api";
-import * as qs from "querystring";
-import Cookies from 'js-cookie';
+import toast from 'toasted-notes'
+import 'toasted-notes/src/styles.css'
 
 export function LoginForm(props) {
     const [email, setEmail] = useState("");
@@ -23,14 +23,19 @@ export function LoginForm(props) {
     function onSubmit() {
         console.log('submitted')
         let user = {
-            username: email,
+            email: email,
             password: password
         }
-        /*loginEndpoint(qs.stringify(user)).then((response) => {
-            let a = 2;
-            let us = Cookies.get('username');
-        })*/
-        history.push('/home')
+        loginEndpoint(user).then((response) => {
+            if(response.data.token)
+            {
+                localStorage.setItem("token", response.data.token);
+            }
+            history.push('/home')
+        }).catch((error) =>{
+            toast.notify("Zły login lub hasło")
+        })
+
     }
 
     return (
