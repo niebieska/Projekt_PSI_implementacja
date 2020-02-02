@@ -14,8 +14,7 @@ spec:
   - name: "8082"
     port: 8082
     targetPort: 8082
-  type: LoadBalancer
+  type: NodePort
   selector:
     io.kompose.service: cesystem
-status:
-  loadBalancer: {}
+
