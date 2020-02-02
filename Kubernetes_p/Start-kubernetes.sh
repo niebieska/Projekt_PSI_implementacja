@@ -24,10 +24,7 @@ kubectl apply -f /c/Users/Kubernetes_p/ausystem-deployment.yaml
 
 #frontend
 kubectl apply -f /c/Users/Kubernetes_p/frontend-deployment.yaml
-
-#assystem
-kubectl apply -f /c/Users/Kubernetes_p/assystem-deployment.yaml
-sleep 60s
+sleep 30s
 
 
 #hrsystem
@@ -38,6 +35,10 @@ kubectl apply -f /c/Users/Kubernetes_p/ausystem-service.yaml
 kubectl apply -f /c/Users/Kubernetes_p/cesystem-service.yaml
 #frontend
 kubectl apply -f /c/Users/Kubernetes_p/frontend-service.yaml
+sleep 10s
+
+#assystem
+kubectl apply -f /c/Users/Kubernetes_p/assystem-deployment.yaml
+sleep 30s
 #assystem
 kubectl apply -f /c/Users/Kubernetes_p/assystem-service.yaml
-sleep 20s
