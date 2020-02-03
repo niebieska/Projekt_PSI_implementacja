@@ -1,6 +1,8 @@
 package pl.edu.pwr.AssignmentsSystem.Powierzenia.Usecase;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import pl.edu.pwr.AssignmentsSystem.Commons.Auth.AuthenticationService;
 import pl.edu.pwr.AssignmentsSystem.Commons.Dto.IdentyfikatorSemestruDto;
@@ -36,27 +38,37 @@ public class PowierzenieService {
     @Autowired
     private WersjaPowtorzenieRepository wersjaPowtorzenieRepository;
 
+
     public List<PlanPowierzenDto> getAllPlanPowerzen(IdentyfikatorSemestruDto identyfikatorSemestruDto) {
         PlanStudiow planStudiow = planStudiowService.getPlanStudiow(identyfikatorSemestruDto);
         List<PlanPowierzen> powierzenia = planStudiow.getPlanPowierzenList();
         return powierzenia.stream().map(PowierzenieMapper::toDto).collect(Collectors.toList());
     }
 
+
+
     public synchronized boolean savePowierzenie(PlanPowierzenDto planPowierzenDto) throws Exception {
+
+        //pobranie email
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userEmail = authentication.getName();
 
         PlanPowierzen planPowierzen = planPowierzenRepository.findById(planPowierzenDto.getId()).orElse(null);
         Powierzenie powierzenie = PowierzenieMapper.toEntity(planPowierzenDto.getPowierzenia().get(0));
         Optional<Uzytkownik> uzytkownik = prowadzacyService
                 .getUzytkownikByID(powierzenie.getUzytkownik().getId());
+        Optional<Uzytkownik> koordynator = prowadzacyService
+                .getUzytkownikByEmail(userEmail);
         Optional<Kurs> kurs = planStudiowService.getKursByID(powierzenie.getKurs().getId());
 
 
-        if (planPowierzen == null || !uzytkownik.isPresent() || !kurs.isPresent() || powierzenie
+        if (planPowierzen == null || !uzytkownik.isPresent() || !koordynator.isPresent() || !kurs.isPresent() || powierzenie
                 .getLiczbaGodzin() <= 0) {
             return false;
         } else {
             powierzenie.setUzytkownik(uzytkownik.get());
             powierzenie.setKurs(kurs.get());
+            powierzenie.setKoordynator(koordynator.get());
             if (checkStanowiskoPermission(uzytkownik.get(), kurs
                     .get()) || checkFreeTime(powierzenie, planPowierzen) || checkKursCapacity(planPowierzen,
                     powierzenie, kurs
@@ -74,20 +86,23 @@ public class PowierzenieService {
             toSave.setKurs(kurs.get());
             toSave.setLiczbaGodzin(powierzenie.getLiczbaGodzin());
             toSave.setPlanPowierzen(planPowierzen);
+            toSave.setKoordynator(koordynator.get());
             WersjaPowierzenia wersja = new WersjaPowierzenia();
             wersja.setLiczbaGodzin(toSave.getLiczbaGodzin());
             wersja.setZgodaProwadzacego(toSave.isZgodaProwadzacego());
             wersja.setKurs(toSave.getKurs());
             wersja.setProwadzacy(toSave.getUzytkownik());
+            wersja.setKoordynatorID(koordynator.get().getId());
             wersja.setWersja(toSave.getWersjePowierzen().stream().map(WersjaPowierzenia::getWersja)
                     .max(Comparator.comparing(Integer::valueOf)).orElse(-1) + 1);
             toSave.getWersjePowierzen().add(wersja);
             planPowierzen.getPowierzenia().add(toSave);
-            //TODO jeszcze koordynator
+            //TODO jeszcze koordynator - chyba jest
             planPowierzenRepository.save(planPowierzen);
         } else {
             Powierzenie newPowierzenie = new Powierzenie();
             newPowierzenie.setUzytkownik(uzytkownik.get());
+            newPowierzenie.setKoordynator(koordynator.get());
             newPowierzenie.setKurs(kurs.get());
             newPowierzenie.setLiczbaGodzin(powierzenie.getLiczbaGodzin());
             newPowierzenie.setAktywny(true);
@@ -97,11 +112,12 @@ public class PowierzenieService {
             wersja.setZgodaProwadzacego(newPowierzenie.isZgodaProwadzacego());
             wersja.setKurs(newPowierzenie.getKurs());
             wersja.setProwadzacy(newPowierzenie.getUzytkownik());
+            wersja.setKoordynatorID(koordynator.get().getId());
             wersja.setWersja(0);
             newPowierzenie.setWersjePowierzen(new ArrayList<>());
             newPowierzenie.getWersjePowierzen().add(wersja);
             planPowierzen.getPowierzenia().add(newPowierzenie);
-            //TODO jeszcze koordynator
+            //TODO jeszcze koordynator - chyba jest
             planPowierzenRepository.save(planPowierzen);
         }
         return true;

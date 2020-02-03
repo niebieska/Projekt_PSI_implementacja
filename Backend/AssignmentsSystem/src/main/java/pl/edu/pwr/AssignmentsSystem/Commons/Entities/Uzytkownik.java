@@ -1,6 +1,7 @@
 package pl.edu.pwr.AssignmentsSystem.Commons.Entities;
 
 import org.springframework.lang.NonNull;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.List;
