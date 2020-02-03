@@ -131,8 +131,8 @@ public class PowierzenieService {
     }
 
     private boolean checkStanowiskoPermission(Uzytkownik uzytkownik, Kurs kurs) {
-        return kurs.getFormaZajec().equals("wykład") || kurs.getFormaZajec()
-                .equals("seminarium") && Stanowiska.nieuprawnieni.contains(uzytkownik.getStanowisko());
+        return (kurs.getFormaZajec().equalsIgnoreCase("wykład") || kurs.getFormaZajec()
+                .equalsIgnoreCase("seminarium")) && Stanowiska.nieuprawnieni.contains(uzytkownik.getStanowisko());
     }
 
     public void savePlanPowierzen(PlanPowierzenDto planPowierzenDto) {
