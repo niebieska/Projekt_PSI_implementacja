@@ -53,4 +53,7 @@ Konfiguracja MemCache MemcachedConfiguration.java
 Przykład zastosowania 
 Projekt_PSI_implementacja/Backend/AssignmentsSystem/.../AssignmentsSystem/Kursy/Usecase/PlanStudiowService.java 
           @Cacheable("PlanStudiowIdentifier")
+          
+  "Gruby klient" realizuje Frontend
+  Load balancer w Kubernetesie
 
