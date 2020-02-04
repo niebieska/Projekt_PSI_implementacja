@@ -14,7 +14,8 @@ Wyświetlanie planu powierzeń
 System zewnętrzny - Projekt_PSI_implementacja/SystemAutoryzacyjny/AuthorizationSystem/
 AuthenticationController.java
 
-public AuthenticationController(){
+        public AuthenticationController()
+        {
         UserDTO admin = new UserDTO();
         admin.setEmail("mateusz.klimiuk@pwr.edu.pl");
         admin.setPassword("admin");
@@ -31,7 +32,8 @@ public AuthenticationController(){
 
 2. Kontrola zmian (rejestracja daty, rodzaju zmiany i osoby, która ją wykonała) w planach/programach/kartach przedmiotуw/planach powierzeń.
  Projekt_PSI_implementacja/Backend/AssignmentsSystem/.../AssignmentsSystem/Powierzenia/Usecase/PowierzenieService.java 
-  WersjaPowierzenia wersja = new WersjaPowierzenia();
+ 
+            WersjaPowierzenia wersja = new WersjaPowierzenia();
             wersja.setLiczbaGodzin(toSave.getLiczbaGodzin());
             wersja.setZgodaProwadzacego(toSave.isZgodaProwadzacego());
             wersja.setKurs(toSave.getKurs());
@@ -50,5 +52,5 @@ Konfiguracja MemCache MemcachedConfiguration.java
 
 Przykład zastosowania 
 Projekt_PSI_implementacja/Backend/AssignmentsSystem/.../AssignmentsSystem/Kursy/Usecase/PlanStudiowService.java 
-  @Cacheable("PlanStudiowIdentifier")
+          @Cacheable("PlanStudiowIdentifier")
 
