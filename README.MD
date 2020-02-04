@@ -55,5 +55,6 @@ Projekt_PSI_implementacja/Backend/AssignmentsSystem/.../AssignmentsSystem/Kursy/
           @Cacheable("PlanStudiowIdentifier")
           
   "Gruby klient" realizuje Frontend
+  
   Load balancer w Kubernetesie
 
